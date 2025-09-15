@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lily's Experience - Premium Bartending Services</title>
+    <title>The Lily's Experience - Premium Bartending Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #ffc2d1;
+            --primary: #f8c8dc;
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
@@ -264,6 +264,19 @@
             left: 0;
         }
         
+        .addons {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .addons h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
         /* ========== GALLERY SECTION ========== */
         .gallery {
             padding: 100px 0;
@@ -312,36 +325,41 @@
             text-align: center;
         }
         
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .testimonial-card {
-            background-color: white;
+        .google-reviews {
+            background: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--primary);
+            margin-top: 30px;
         }
         
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: var(--dark);
+        .review-embed {
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
         }
         
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--accent);
+        /* ========== CAREERS SECTION ========== */
+        .careers {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .careers-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         /* ========== PAYMENT SECTION ========== */
         .payment-section {
             padding: 100px 0;
-            background-color: white;
+            background-color: var(--light);
         }
         
         .payment-container {
@@ -352,7 +370,7 @@
         }
         
         .payment-form {
-            background-color: var(--light);
+            background-color: white;
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -373,7 +391,7 @@
         .form-control {
             width: 100%;
             padding: 15px;
-            background-color: white;
+            background-color: var(--light);
             border: 1px solid var(--primary);
             border-radius: 5px;
             color: var(--text);
@@ -503,7 +521,7 @@
         <div class="container header-container">
             <a href="#" class="logo">
                 <i class="fas fa-cocktail"></i>
-                Lily's Experience
+                The Lily's Experience
             </a>
             <nav>
                 <ul>
@@ -511,7 +529,8 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#packages">Packages</a></li>
                     <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#careers">Work With Us</a></li>
                     <li><a href="#payment">Booking</a></li>
                 </ul>
             </nav>
@@ -531,17 +550,17 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-title">
-                <h2>About Lily's Experience</h2>
+                <h2>About The Lily's Experience</h2>
             </div>
             <div class="about-container">
                 <div class="about-content">
                     <h3>Crafting Unforgettable Experiences</h3>
-                    <p>Lily's Experience brings a new level of sophistication to event bartending. With over 5 years of experience in the hospitality industry, our team of skilled mixologists creates not just drinks, but memorable experiences for your guests.</p>
+                    <p>The Lily's Experience brings a new level of sophistication to event bartending. With over 5 years of experience in the hospitality industry, our team of skilled mixologists creates not just drinks, but memorable experiences for your guests.</p>
                     <p>We specialize in custom cocktail menus, flair bartending performances, and providing exceptional service that will make your event truly stand out.</p>
                     <a href="#contact" class="btn">Get in Touch</a>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bartender preparing cocktail">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cocktail prepared by Lily's Experience">
                 </div>
             </div>
         </div>
@@ -554,78 +573,117 @@
                 <h2>Our Packages</h2>
             </div>
             <div class="packages-grid">
-                <!-- Package 1 - Basic Plan -->
+                <!-- Package 1 - Basic Bartending -->
                 <div class="package-card">
                     <div class="package-img">
-                        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Basic Package">
+                        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Basic Bartending">
                     </div>
                     <div class="package-content">
-                        <h3>Basic Plan</h3>
-                        <div class="package-price">$500</div>
+                        <h3>Basic Bartending Services</h3>
+                        <div class="package-price">$50/hr</div>
                         <ul class="package-features">
-                            <li>1 professional bartender</li>
-                            <li>3 hours of service</li>
-                            <li>Menu of 3 classic cocktails</li>
-                            <li>Basic non-alcoholic beverages</li>
-                            <li>Standard supplies and equipment</li>
+                            <li>Certificated bartender</li>
+                            <li>Client provides all alcohol, mixers, garnish, ice, napkins, cups and straws</li>
+                            <li>Bar signage</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Gas compensation</li>
                         </ul>
                         <a href="#payment" class="btn">Book Now</a>
                     </div>
                 </div>
                 
-                <!-- Package 2 -->
+                <!-- Package 2 - Essential Experience -->
                 <div class="package-card">
                     <div class="package-img">
-                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3" alt="Essential Package">
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3" alt="Essential Experience">
                     </div>
                     <div class="package-content">
                         <h3>Essential Experience</h3>
-                        <div class="package-price">$800</div>
+                        <div class="package-price">$450</div>
                         <ul class="package-features">
-                            <li>2 professional bartenders</li>
-                            <li>4 hours of service</li>
-                            <li>Menu of 5 classic cocktails</li>
-                            <li>Unlimited non-alcoholic beverages</li>
-                            <li>Basic supplies and equipment</li>
+                            <li>Covers up to 75 guests</li>
+                            <li>4 Hours of bartending service</li>
+                            <li>1 Professional bartender</li>
+                            <li>Portable bar</li>
+                            <li>All bar tools & equipment provided</li>
+                            <li>Mixers and garnishes included</li>
+                            <li>Standard cocktail menu (choose 2-3 cocktails)</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Soft drinks package limited</li>
+                            <li>Cups, napkins and straws</li>
+                            <li>Service area: up to 20 miles</li>
                         </ul>
+                        <div class="addons">
+                            <h4>Add-ons:</h4>
+                            <p>ICE: $75</p>
+                            <p>Premium cocktail upgrade: $50 per cocktail</p>
+                            <p>Gas compensation: $15</p>
+                            <p>Additional hours: $75/hr</p>
+                        </div>
                         <a href="#payment" class="btn">Book Now</a>
                     </div>
                 </div>
                 
-                <!-- Package 3 -->
+                <!-- Package 3 - Premium Experience -->
                 <div class="package-card">
                     <div class="package-img">
-                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3" alt="Premium Package">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3" alt="Premium Experience">
                     </div>
                     <div class="package-content">
                         <h3>Premium Experience</h3>
-                        <div class="package-price">$1,500</div>
+                        <div class="package-price">$800</div>
                         <ul class="package-features">
-                            <li>3 professional bartenders</li>
-                            <li>5 hours of service</li>
-                            <li>Custom menu of 8 cocktails</li>
-                            <li>Elegant mobile bar setup</li>
-                            <li>Premium ingredients and special garnishes</li>
+                            <li>Covers up to 125 guests</li>
+                            <li>4 Hours of bartending service</li>
+                            <li>2 Professional bartenders</li>
+                            <li>Portable bar</li>
+                            <li>All bar tools & equipment provided</li>
+                            <li>Mixers and garnishes included</li>
+                            <li>Standard cocktail menu (choose 2-3 cocktails)</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Soft drinks package limited</li>
+                            <li>Cups, napkins and straws</li>
+                            <li>Service area: up to 20 miles</li>
                         </ul>
+                        <div class="addons">
+                            <h4>Add-ons:</h4>
+                            <p>ICE: $135</p>
+                            <p>Premium cocktail upgrade: $50 per cocktail</p>
+                            <p>Gas compensation: $15</p>
+                            <p>Additional hours: $100/hr</p>
+                        </div>
                         <a href="#payment" class="btn">Book Now</a>
                     </div>
                 </div>
                 
-                <!-- Package 4 -->
+                <!-- Package 4 - Luxury Experience -->
                 <div class="package-card">
                     <div class="package-img">
-                        <img src="https://images.unsplash.com/photo-1572116465186-631f946e3d6f?ixlib=rb-4.0.3" alt="Luxury Package">
+                        <img src="https://images.unsplash.com/photo-1572116465186-631f946e3d6f?ixlib=rb-4.0.3" alt="Luxury Experience">
                     </div>
                     <div class="package-content">
                         <h3>Luxury Experience</h3>
-                        <div class="package-price">$2,500</div>
+                        <div class="package-price">$1400</div>
                         <ul class="package-features">
-                            <li>4 elite bartenders</li>
-                            <li>6 hours of service</li>
-                            <li>Fully customized menu</li>
-                            <li>Flair bartending performance</li>
-                            <li>Imported and exclusive ingredients</li>
+                            <li>Covers up to 200 guests</li>
+                            <li>4 Hours of bartending service</li>
+                            <li>2-3 Professional bartenders</li>
+                            <li>1-2 Portable bars</li>
+                            <li>All bar tools & equipment provided</li>
+                            <li>Mixers and garnishes included</li>
+                            <li>Standard cocktail menu (choose 4-5 cocktails)</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Soft drinks package limited</li>
+                            <li>Cups, napkins and straws</li>
+                            <li>Service area: up to 20 miles</li>
                         </ul>
+                        <div class="addons">
+                            <h4>Add-ons:</h4>
+                            <p>ICE: $210</p>
+                            <p>Premium cocktail upgrade: $50 per cocktail</p>
+                            <p>Gas compensation: $15</p>
+                            <p>Additional hours: $150/hr</p>
+                        </div>
                         <a href="#payment" class="btn">Book Now</a>
                     </div>
                 </div>
@@ -655,7 +713,7 @@
                     <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cocktail">
                 </div>
                 <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1572116465186-631f946e3d6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bartending">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cocktail">
                 </div>
                 <div class="gallery-item">
                     <img src="https://images.unsplash.com/photo-1563227815-6e5a7b7b0c0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Event">
@@ -674,21 +732,33 @@
     <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What Our Clients Say</h2>
+                <h2>Google Reviews</h2>
+                <p>See what our clients are saying about us on Google</p>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Lily's Experience completely transformed our wedding. The cocktails were exquisite and the presentation impeccable."</p>
-                    <p class="testimonial-author">- Maria and Robert</p>
+            <div class="testimonials-container">
+                <div class="google-reviews">
+                    <div class="review-embed">
+                        <iframe src="https://embedsocial.com/api/pro_hashtag/6c287d0d9e2d9c0d1d0e4f4d4d4d4d4d4d4d4d4" width="100%" height="400" frameborder="0" style="border:0;"></iframe>
+                    </div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <a href="https://maps.app.goo.gl/ADy7qz8eAmcL9Dmk8?g_st=iw" target="_blank" class="btn">View All Reviews on Google</a>
+                    </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"We hired their services for our corporate event and everyone was delighted. Total professionalism."</p>
-                    <p class="testimonial-author">- James, CEO TechSolutions</p>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"The best decision for my birthday party. The bartenders didn't just make drinks, they were a whole show!"</p>
-                    <p class="testimonial-author">- Caroline</p>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CAREERS SECTION ========== -->
+    <section id="careers" class="careers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Work With Us</h2>
+            </div>
+            <div class="careers-content">
+                <h3>Join The Lily's Experience Team</h3>
+                <p>Are you a passionate bartender looking to be part of an exceptional team? We're always looking for talented individuals who share our commitment to quality and customer service.</p>
+                <p>Send your resume and portfolio to our email and let's create amazing experiences together!</p>
+                <a href="mailto:thelilysexperience1@hotmail.com" class="btn">Apply Now</a>
             </div>
         </div>
     </section>
@@ -711,10 +781,10 @@
                             <label for="package">Selected Package</label>
                             <select id="package" class="form-control">
                                 <option value="">Select a package</option>
-                                <option value="basic">Basic Plan - $500</option>
-                                <option value="essential">Essential Experience - $800</option>
-                                <option value="premium">Premium Experience - $1,500</option>
-                                <option value="luxury">Luxury Experience - $2,500</option>
+                                <option value="basic">Basic Bartending - $50/hr</option>
+                                <option value="essential">Essential Experience - $450</option>
+                                <option value="premium">Premium Experience - $800</option>
+                                <option value="luxury">Luxury Experience - $1,400</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -734,20 +804,10 @@
                             <input type="date" id="eventDate" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="cardNumber">Credit Card Number</label>
-                            <input type="text" id="cardNumber" class="form-control" placeholder="1234 5678 9012 3456">
+                            <label for="guests">Number of Guests</label>
+                            <input type="number" id="guests" class="form-control" placeholder="Approximate number of guests">
                         </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="expiry">Expiration Date</label>
-                                <input type="text" id="expiry" class="form-control" placeholder="MM/YY">
-                            </div>
-                            <div class="form-group">
-                                <label for="cvv">CVV</label>
-                                <input type="text" id="cvv" class="form-control" placeholder="123">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-payment">Process Payment</button>
+                        <button type="submit" class="btn-payment">Request Booking</button>
                     </form>
                 </div>
             </div>
@@ -759,7 +819,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Lily's Experience</h3>
+                    <h3>The Lily's Experience</h3>
                     <p>Premium bartending services for all types of events. Creating memorable experiences through mixology.</p>
                 </div>
                 <div class="footer-column">
@@ -768,14 +828,15 @@
                     <a href="#about">About</a>
                     <a href="#packages">Packages</a>
                     <a href="#gallery">Gallery</a>
-                    <a href="#testimonials">Testimonials</a>
+                    <a href="#testimonials">Reviews</a>
+                    <a href="#careers">Work With Us</a>
                     <a href="#payment">Booking</a>
                 </div>
                 <div class="footer-column">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Main Avenue 123, City</p>
-                    <p><i class="fas fa-phone"></i> +1 (234) 567-8900</p>
-                    <p><i class="fas fa-envelope"></i> info@lilysexperience.com</p>
+                    <p><i class="fas fa-user"></i> Contact: Lily</p>
+                    <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
                 </div>
             </div>
             <div class="social-icons">
@@ -785,7 +846,7 @@
                 <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
-                <p>&copy; 2023 Lily's Experience. All rights reserved.</p>
+                <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -812,7 +873,7 @@
         // Form submission
         document.getElementById('reservationForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your reservation! We will contact you shortly to confirm the details.');
+            alert('Thank you for your reservation request! We will contact you shortly to confirm the details and discuss payment.');
             this.reset();
         });
     </script>
