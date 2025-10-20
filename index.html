@@ -67,10 +67,22 @@
             display: flex;
             align-items: center;
             z-index: 1001;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent);
         }
         
         .logo i {
             margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover i {
+            transform: rotate(-15deg);
         }
         
         /* ========== DROPDOWN MENU ========== */
@@ -590,10 +602,10 @@
     <!-- ========== HEADER ========== -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo" id="home-link">
+            <div class="logo" id="home-logo">
                 <i class="fas fa-cocktail"></i>
                 The Lily's Experience
-            </a>
+            </div>
             
             <!-- Menú Desplegable -->
             <div class="dropdown">
@@ -941,6 +953,15 @@
                         behavior: 'smooth'
                     });
                 }
+            });
+        });
+
+        // Logo click - lleva al home
+        document.getElementById('home-logo').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
 
