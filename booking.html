@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - The Lily's Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8c8dc;
+            --secondary: #f4acb7;
+            --accent: #ff85a2;
+            --light: #f9f0f5;
+            --dark: #8a5d7e;
+            --text: #5e4a4e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropbtn {
+            background-color: transparent;
+            color: var(--dark);
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        
+        .dropbtn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            z-index: 1000;
+            border: 1px solid var(--primary);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: var(--text);
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--light);
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding-left: 25px;
+        }
+        
+        .dropdown-content a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 120px 0 80px;
+        }
+        
+        .booking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .booking-info {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--primary);
+        }
+        
+        .booking-info h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .booking-info ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .booking-info li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .booking-info li:before {
+            content: '✓';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .booking-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--light);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .btn-payment {
+            width: 100%;
+            background-color: var(--accent);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-payment:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-cocktail"></i>
+                The Lily's Experience
+            </a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <i class="fas fa-bars"></i>
+                    Menu
+                </button>
+                <div class="dropdown-content">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-user"></i> About</a>
+                    <a href="packages.html"><i class="fas fa-list"></i> Packages</a>
+                    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+                    <a href="testimonials.html"><i class="fas fa-star"></i> Reviews</a>
+                    <a href="booking.html"><i class="fas fa-calendar-check"></i> Booking</a>
+                    <a href="careers.html"><i class="fas fa-briefcase"></i> Work With Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 50px;">Book Your Event</h1>
+            
+            <div class="booking-container">
+                <div class="booking-info">
+                    <h3>Booking Process</h3>
+                    <ul>
+                        <li>Select your preferred package and fill out the booking form</li>
+                        <li>We'll contact you within 24 hours to confirm availability</li>
+                        <li>50% deposit required to secure your date</li>
+                        <li>Final payment due 7 days before your event</li>
+                        <li>Custom cocktail menu consultation included</li>
+                        <li>Free cancellation up to 14 days before event</li>
+                    </ul>
+                    
+                    <h3>What's Included</h3>
+                    <ul>
+                        <li>Professional certified bartenders</li>
+                        <li>All necessary bar equipment</li>
+                        <li>Custom cocktail menu creation</li>
+                        <li>Bar setup and cleanup</li>
+                        <li>Liability insurance</li>
+                        <li>24/7 customer support</li>
+                    </ul>
+                </div>
+                
+                <div class="booking-form">
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <label for="package">Select Package</label>
+                            <select id="package" class="form-control" required>
+                                <option value="">Choose a package</option>
+                                <option value="basic">Basic Bartending - $50/hr</option>
+                                <option value="essential">Essential Experience - $450</option>
+                                <option value="premium">Premium Experience - $800</option>
+                                <option value="luxury">Luxury Experience - $1,400</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="+1 (234) 567-8900" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventDate">Event Date</label>
+                                <input type="date" id="eventDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventTime">Event Time</label>
+                                <input type="time" id="eventTime" class="form-control" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guests">Number of Guests</label>
+                                <input type="number" id="guests" class="form-control" placeholder="Approximate number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hours">Service Hours</label>
+                                <input type="number" id="hours" class="form-control" placeholder="Hours needed" min="2" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventType">Event Type</label>
+                            <select id="eventType" class="form-control" required>
+                                <option value="">Select event type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="private">Private Party</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Special Requests or Notes</label>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Tell us about your event, theme, or any special requirements..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-payment">Request Booking & Get Quote</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>The Lily's Experience</h3>
+                    <p>Premium bartending services for all types of events.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-user"></i> Contact: Lily</p>
+                    <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you within 24 hours to confirm availability and provide a detailed quote.');
+            this.reset();
+        });
+
+        // Dropdown Menu
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                const dropdownContent = document.querySelector('.dropdown-content');
+                dropdownContent.style.display = 'none';
+            }
+        });
+
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        
+        dropdown.addEventListener('mouseenter', function() {
+            dropdownContent.style.display = 'block';
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownContent.style.display = 'none';
+        });
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('eventDate').min = today;
+    </script>
+</body>
+</html>
