@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - The Lily's Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8c8dc;
+            --secondary: #f4acb7;
+            --accent: #ff85a2;
+            --light: #f9f0f5;
+            --dark: #8a5d7e;
+            --text: #5e4a4e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropbtn {
+            background-color: transparent;
+            color: var(--dark);
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        
+        .dropbtn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            z-index: 1000;
+            border: 1px solid var(--primary);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: var(--text);
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--light);
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding-left: 25px;
+        }
+        
+        .dropdown-content a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 120px 0 80px;
+        }
+        
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .package-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--primary);
+        }
+        
+        .package-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .package-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .package-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .package-content {
+            padding: 25px;
+        }
+        
+        .package-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .package-price {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .package-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .package-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .package-features li:before {
+            content: '✓';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+        
+        .addons {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .addons h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-cocktail"></i>
+                The Lily's Experience
+            </a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <i class="fas fa-bars"></i>
+                    Menu
+                </button>
+                <div class="dropdown-content">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-user"></i> About</a>
+                    <a href="packages.html"><i class="fas fa-list"></i> Packages</a>
+                    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+                    <a href="testimonials.html"><i class="fas fa-star"></i> Reviews</a>
+                    <a href="booking.html"><i class="fas fa-calendar-check"></i> Booking</a>
+                    <a href="careers.html"><i class="fas fa-briefcase"></i> Work With Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 50px;">Our Packages</h1>
+            <div class="packages-grid">
+                <!-- Los mismos 4 paquetes que teníamos antes -->
+                <!-- Basic Bartending -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Basic Bartending">
+                    </div>
+                    <div class="package-content">
+                        <h3>Basic Bartending Services</h3>
+                        <div class="package-price">$50/hr</div>
+                        <ul class="package-features">
+                            <li>Certificated bartender</li>
+                            <li>Client provides all alcohol, mixers, garnish, ice, napkins, cups and straws</li>
+                            <li>Bar signage</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Gas compensation</li>
+                        </ul>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Essential Experience -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3" alt="Essential Experience">
+                    </div>
+                    <div class="package-content">
+                        <h3>Essential Experience</h3>
+                        <div class="package-price">$450</div>
+                        <ul class="package-features">
+                            <li>Covers up to 75 guests</li>
+                            <li>4 Hours of bartending service</li>
+                            <li>1 Professional bartender</li>
+                            <li>Portable bar</li>
+                            <li>All bar tools & equipment provided</li>
+                            <li>Mixers and garnishes included</li>
+                            <li>Standard cocktail menu (choose 2-3 cocktails)</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Soft drinks package limited</li>
+                            <li>Cups, napkins and straws</li>
+                            <li>Service area: up to 20 miles</li>
+                        </ul>
+                        <div class="addons">
+                            <h4>Add-ons:</h4>
+                            <p>ICE: $75</p>
+                            <p>Premium cocktail upgrade: $50 per cocktail</p>
+                            <p>Gas compensation: $15</p>
+                            <p>Additional hours: $75/hr</p>
+                        </div>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Premium Experience -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3" alt="Premium Experience">
+                    </div>
+                    <div class="package-content">
+                        <h3>Premium Experience</h3>
+                        <div class="package-price">$800</div>
+                        <ul class="package-features">
+                            <li>Covers up to 125 guests</li>
+                            <li>4 Hours of bartending service</li>
+                            <li>2 Professional bartenders</li>
+                            <li>Portable bar</li>
+                            <li>All bar tools & equipment provided</li>
+                            <li>Mixers and garnishes included</li>
+                            <li>Standard cocktail menu (choose 2-3 cocktails)</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Soft drinks package limited</li>
+                            <li>Cups, napkins and straws</li>
+                            <li>Service area: up to 20 miles</li>
+                        </ul>
+                        <div class="addons">
+                            <h4>Add-ons:</h4>
+                            <p>ICE: $135</p>
+                            <p>Premium cocktail upgrade: $50 per cocktail</p>
+                            <p>Gas compensation: $15</p>
+                            <p>Additional hours: $100/hr</p>
+                        </div>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Luxury Experience -->
+                <div class="package-card">
+                    <div class="package-img">
+                        <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Luxury Experience">
+                    </div>
+                    <div class="package-content">
+                        <h3>Luxury Experience</h3>
+                        <div class="package-price">$1400</div>
+                        <ul class="package-features">
+                            <li>Covers up to 200 guests</li>
+                            <li>4 Hours of bartending service</li>
+                            <li>2-3 Professional bartenders</li>
+                            <li>1-2 Portable bars</li>
+                            <li>All bar tools & equipment provided</li>
+                            <li>Mixers and garnishes included</li>
+                            <li>Standard cocktail menu (choose 4-5 cocktails)</li>
+                            <li>Customized alcohol shopping list</li>
+                            <li>Soft drinks package limited</li>
+                            <li>Cups, napkins and straws</li>
+                            <li>Service area: up to 20 miles</li>
+                        </ul>
+                        <div class="addons">
+                            <h4>Add-ons:</h4>
+                            <p>ICE: $210</p>
+                            <p>Premium cocktail upgrade: $50 per cocktail</p>
+                            <p>Gas compensation: $15</p>
+                            <p>Additional hours: $150/hr</p>
+                        </div>
+                        <a href="booking.html" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>The Lily's Experience</h3>
+                    <p>Premium bartending services for all types of events.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-user"></i> Contact: Lily</p>
+                    <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                const dropdownContent = document.querySelector('.dropdown-content');
+                dropdownContent.style.display = 'none';
+            }
+        });
+
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        
+        dropdown.addEventListener('mouseenter', function() {
+            dropdownContent.style.display = 'block';
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownContent.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
