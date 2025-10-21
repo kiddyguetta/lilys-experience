@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - The Lily's Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f8c8dc;
+            --secondary: #f4acb7;
+            --accent: #ff85a2;
+            --light: #f9f0f5;
+            --dark: #8a5d7e;
+            --text: #5e4a4e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+            color: var(--accent);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropbtn {
+            background-color: transparent;
+            color: var(--dark);
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        
+        .dropbtn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-radius: 10px;
+            z-index: 1000;
+            border: 1px solid var(--primary);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .dropdown-content a {
+            color: var(--text);
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid var(--light);
+            font-weight: 500;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            padding-left: 25px;
+        }
+        
+        .dropdown-content a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding: 120px 0 80px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stars {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            font-weight: bold;
+        }
+        
+        .client-details h4 {
+            margin: 0;
+            color: var(--dark);
+        }
+        
+        .client-details p {
+            margin: 0;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        .google-reviews-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 50px;
+            text-align: center;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: var(--light);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .copyright {
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-cocktail"></i>
+                The Lily's Experience
+            </a>
+            
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <i class="fas fa-bars"></i>
+                    Menu
+                </button>
+                <div class="dropdown-content">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="about.html"><i class="fas fa-user"></i> About</a>
+                    <a href="packages.html"><i class="fas fa-list"></i> Packages</a>
+                    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+                    <a href="testimonials.html"><i class="fas fa-star"></i> Reviews</a>
+                    <a href="booking.html"><i class="fas fa-calendar-check"></i> Booking</a>
+                    <a href="careers.html"><i class="fas fa-briefcase"></i> Work With Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 20px;">Client Reviews</h1>
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem;">
+                See what our amazing clients are saying about their experience
+            </p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Lily's Experience made our wedding absolutely magical! The cocktails were incredible, and the bartenders were so professional and friendly. Our guests are still talking about the amazing service!"
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">MR</div>
+                        <div class="client-details">
+                            <h4>Maria & Robert</h4>
+                            <p>Wedding Clients</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "We hired The Lily's Experience for our corporate holiday party, and they exceeded all expectations. The custom cocktail menu was a huge hit, and the service was flawless from start to finish."
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">JS</div>
+                        <div class="client-details">
+                            <h4>James Smith</h4>
+                            <p>Corporate Event</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Best decision we made for our birthday party! The bartenders were not only skilled but also entertained our guests with their flair. The attention to detail was remarkable."
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">CS</div>
+                        <div class="client-details">
+                            <h4>Caroline Smith</h4>
+                            <p>Birthday Party</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Professional, punctual, and absolutely amazing at what they do! The customized cocktail menu for our anniversary party was perfect. Highly recommend!"
+                    </p>
+                    <div class="client-info">
+                        <div class="client-avatar">AJ</div>
+                        <div class="client-details">
+                            <h4>Amanda Johnson</h4>
+                            <p>Anniversary Party</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="google-reviews-section">
+                <h2>See More Reviews on Google</h2>
+                <p>Check out our 5-star ratings and read more testimonials from our satisfied clients</p>
+                <a href="https://maps.app.goo.gl/ADy7qz8eAmcL9Dmk8?g_st=iw" target="_blank" class="btn">
+                    <i class="fab fa-google"></i> View Google Reviews
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>The Lily's Experience</h3>
+                    <p>Premium bartending services for all types of events.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-user"></i> Contact: Lily</p>
+                    <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
+                </div>
+            </div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                const dropdownContent = document.querySelector('.dropdown-content');
+                dropdownContent.style.display = 'none';
+            }
+        });
+
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        
+        dropdown.addEventListener('mouseenter', function() {
+            dropdownContent.style.display = 'block';
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownContent.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
