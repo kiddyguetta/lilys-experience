@@ -223,6 +223,69 @@
             gap: 15px;
         }
         
+        .package-selection {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--primary);
+        }
+        
+        .package-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .package-option:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .package-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .package-details {
+            flex-grow: 1;
+        }
+        
+        .package-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .package-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .total-section {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border: 2px solid var(--accent);
+            text-align: center;
+        }
+        
+        .total-amount {
+            font-size: 2rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .total-note {
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
         .btn-payment {
             width: 100%;
             background-color: var(--accent);
@@ -341,94 +404,157 @@
                 <div class="booking-info">
                     <h3>Booking Process</h3>
                     <ul>
-                        <li>Select your preferred package and fill out the booking form</li>
+                        <li>Select your preferred packages (you can choose multiple)</li>
+                        <li>Fill out the event details form</li>
                         <li>We'll contact you within 24 hours to confirm availability</li>
                         <li>50% deposit required to secure your date</li>
                         <li>Final payment due 7 days before your event</li>
-                        <li>Custom cocktail menu consultation included</li>
+                        <li>Custom menu consultation included</li>
+                        <li>Free cancellation up to 14 days before event</li>
                     </ul>
                     
                     <h3>What's Included</h3>
                     <ul>
-                        <li>Professional certified bartenders</li>
-                        <li>All necessary bar equipment</li>
-                        <li>Custom cocktail menu creation</li>
-                        <li>Bar setup and cleanup</li>
-                        <li>Liability insurance</li>
-                        <li>24/7 customer support</li>
+                        <li>Professional bartending staff</li>
+                        <li>Premium glassware and bar equipment</li>
+                        <li>Customized cocktail menu</li>
+                        <li>Setup and cleanup services</li>
+                        <li>Liquor license compliance</li>
+                        <li>Event insurance coverage</li>
+                        <li>Complimentary consultation</li>
+                    </ul>
+                    
+                    <h3>Why Choose Us</h3>
+                    <ul>
+                        <li>5+ years of experience in event bartending</li>
+                        <li>Fully licensed and insured</li>
+                        <li>Customizable packages to fit your needs</li>
+                        <li>Eco-friendly practices</li>
+                        <li>Outstanding customer reviews</li>
+                        <li>Flexible payment options</li>
                     </ul>
                 </div>
                 
                 <div class="booking-form">
-                    <form id="reservationForm">
+                    <h3 style="margin-bottom: 30px;">Event Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-row">
                         <div class="form-group">
-                            <label for="package">Select Package</label>
-                            <select id="package" class="form-control" required>
-                                <option value="">Choose a package</option>
-                                <option value="basic">Basic Bartending - $50/hr</option>
-                                <option value="essential">Essential Experience - $450</option>
-                                <option value="premium">Premium Experience - $800</option>
-                                <option value="luxury">Luxury Experience - $1,400</option>
-                            </select>
+                            <label for="eventDate">Event Date *</label>
+                            <input type="date" id="eventDate" class="form-control" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Your full name" required>
+                            <label for="eventTime">Event Time *</label>
+                            <input type="time" id="eventTime" class="form-control" required>
                         </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="eventType">Event Type *</label>
+                        <select id="eventType" class="form-control" required>
+                            <option value="">Select Event Type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="corporate">Corporate Event</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="holiday">Holiday Party</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="guests">Number of Guests *</label>
+                        <input type="number" id="guests" class="form-control" min="10" max="500" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="venue">Event Venue</label>
+                        <input type="text" id="venue" class="form-control" placeholder="Venue name and address">
+                    </div>
+                    
+                    <div class="package-selection">
+                        <h4 style="margin-bottom: 15px;">Select Your Packages</h4>
                         
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" class="form-control" placeholder="+1 (234) 567-8900" required>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="eventDate">Event Date</label>
-                                <input type="date" id="eventDate" class="form-control" required>
+                        <div class="package-option">
+                            <input type="checkbox" id="package1" name="package" value="cocktail" data-price="1200">
+                            <div class="package-details">
+                                <div class="package-name">Signature Cocktail Package</div>
+                                <div class="package-price">$1,200</div>
+                                <small>Includes 5 signature cocktails, premium spirits, and garnishes</small>
                             </div>
-                            <div class="form-group">
-                                <label for="eventTime">Event Time</label>
-                                <input type="time" id="eventTime" class="form-control" required>
+                        </div>
+                        
+                        <div class="package-option">
+                            <input type="checkbox" id="package2" name="package" value="bartending" data-price="800">
+                            <div class="package-details">
+                                <div class="package-name">Professional Bartending Service</div>
+                                <div class="package-price">$800</div>
+                                <small>2 professional bartenders for up to 4 hours</small>
                             </div>
                         </div>
                         
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="guests">Number of Guests</label>
-                                <input type="number" id="guests" class="form-control" placeholder="Approximate number" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="hours">Service Hours</label>
-                                <input type="number" id="hours" class="form-control" placeholder="Hours needed" min="2" required>
+                        <div class="package-option">
+                            <input type="checkbox" id="package3" name="package" value="mocktail" data-price="600">
+                            <div class="package-details">
+                                <div class="package-name">Premium Mocktail Bar</div>
+                                <div class="package-price">$600</div>
+                                <small>Non-alcoholic specialty drinks for all guests</small>
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="eventType">Event Type</label>
-                            <select id="eventType" class="form-control" required>
-                                <option value="">Select event type</option>
-                                <option value="wedding">Wedding</option>
-                                <option value="corporate">Corporate Event</option>
-                                <option value="birthday">Birthday Party</option>
-                                <option value="anniversary">Anniversary</option>
-                                <option value="private">Private Party</option>
-                                <option value="other">Other</option>
-                            </select>
+                        <div class="package-option">
+                            <input type="checkbox" id="package4" name="package" value="custom" data-price="1500">
+                            <div class="package-details">
+                                <div class="package-name">Custom Cocktail Creation</div>
+                                <div class="package-price">$1,500</div>
+                                <small>Personalized cocktail menu designed specifically for your event</small>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="message">Special Requests or Notes</label>
-                            <textarea id="message" class="form-control" rows="4" placeholder="Tell us about your event, theme, or any special requirements..."></textarea>
+                        <div class="package-option">
+                            <input type="checkbox" id="package5" name="package" value="premium" data-price="2000">
+                            <div class="package-details">
+                                <div class="package-name">Premium Full Bar Experience</div>
+                                <div class="package-price">$2,000</div>
+                                <small>Complete bar setup with top-shelf spirits and mixers</small>
+                            </div>
                         </div>
-                        
-                        <button type="submit" class="btn-payment">Request Booking & Get Quote</button>
-                    </form>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="specialRequests">Special Requests or Notes</label>
+                        <textarea id="specialRequests" class="form-control" rows="4" placeholder="Any dietary restrictions, theme details, or special requirements..."></textarea>
+                    </div>
+                    
+                    <div class="total-section">
+                        <h4>Estimated Total</h4>
+                        <div class="total-amount">$0</div>
+                        <p class="total-note">* Final pricing may vary based on specific requirements</p>
+                    </div>
+                    
+                    <button class="btn-payment">
+                        <i class="fas fa-lock"></i> Proceed to Secure Booking
+                    </button>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
+                        By booking, you agree to our <a href="#" style="color: var(--accent);">Terms of Service</a> and <a href="#" style="color: var(--accent);">Privacy Policy</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -439,20 +565,33 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>The Lily's Experience</h3>
-                    <p>Premium bartending services for all types of events.</p>
+                    <p>Creating unforgettable cocktail experiences for your special events with premium service and custom-crafted beverages.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
                 </div>
+                
                 <div class="footer-column">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-user"></i> Contact: Lily</p>
-                    <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
-                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Mixology Lane, Barville</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@lilysexperience.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="booking.html">Book Now</a>
                 </div>
             </div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-            </div>
+            
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
             </div>
@@ -460,37 +599,53 @@
     </footer>
 
     <script>
-        // Form submission
-        document.getElementById('reservationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your booking request! We will contact you within 24 hours to confirm availability and provide a detailed quote.');
-            this.reset();
-        });
-
-        // Dropdown Menu
-        document.addEventListener('click', function(event) {
-            const dropdown = document.querySelector('.dropdown');
-            if (!dropdown.contains(event.target)) {
-                const dropdownContent = document.querySelector('.dropdown-content');
-                dropdownContent.style.display = 'none';
+        // Calculate total based on selected packages
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[name="package"]');
+            const totalAmount = document.querySelector('.total-amount');
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateTotal);
+            });
+            
+            function updateTotal() {
+                let total = 0;
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        total += parseInt(checkbox.getAttribute('data-price'));
+                    }
+                });
+                totalAmount.textContent = '$' + total.toLocaleString();
             }
+            
+            // Form submission handling
+            const bookingForm = document.querySelector('.booking-form');
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation
+                const requiredFields = bookingForm.querySelectorAll('[required]');
+                let valid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        valid = false;
+                        field.style.borderColor = 'red';
+                    } else {
+                        field.style.borderColor = '';
+                    }
+                });
+                
+                if (valid) {
+                    // In a real application, you would submit the form data to a server
+                    alert('Thank you for your booking request! We will contact you within 24 hours to confirm your event details.');
+                    bookingForm.reset();
+                    totalAmount.textContent = '$0';
+                } else {
+                    alert('Please fill in all required fields.');
+                }
+            });
         });
-
-        const dropdown = document.querySelector('.dropdown');
-        const dropdownContent = document.querySelector('.dropdown-content');
-        
-        dropdown.addEventListener('mouseenter', function() {
-            dropdownContent.style.display = 'block';
-        });
-        
-        dropdown.addEventListener('mouseleave', function() {
-            dropdownContent.style.display = 'none';
-        });
-
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('eventDate').min = today;
     </script>
 </body>
 </html>
-
