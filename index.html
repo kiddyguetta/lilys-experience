@@ -6,13 +6,14 @@
     <title>The Lily's Experience - Premium Bartending Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #f8c8dc;
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #8a5d7e;
+            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
             --text: #5e4a4e;
         }
         
@@ -60,8 +61,8 @@
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-family: 'Dancing Script', cursive; /* Changed to script font */
+            font-size: 36px; /* Slightly larger for better visibility */
             color: var(--dark);
             text-decoration: none;
             display: flex;
@@ -69,6 +70,7 @@
             z-index: 1001;
             transition: all 0.3s ease;
             cursor: pointer;
+            font-weight: 700;
         }
         
         .logo:hover {
@@ -252,7 +254,7 @@
         
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--dark);
+            background-color: var(--dark); /* Now using Dusty Rose */
             padding: 60px 0 30px;
             text-align: center;
             color: white;
@@ -327,6 +329,10 @@
             .featured-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .logo {
+                font-size: 30px; /* Adjusted for mobile */
+            }
         }
         
         @media (max-width: 480px) {
@@ -341,7 +347,7 @@
             }
             
             .logo {
-                font-size: 24px;
+                font-size: 26px; /* Adjusted for mobile */
             }
             
             .hero h1 {
