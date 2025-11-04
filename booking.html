@@ -6,13 +6,14 @@
     <title>Booking - The Lily's Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #f8c8dc;
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #8a5d7e;
+            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
             --text: #5e4a4e;
         }
         
@@ -27,6 +28,13 @@
             color: var(--text);
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
         }
         
         .container {
@@ -35,7 +43,7 @@
             padding: 0 20px;
         }
         
-        /* Header Styles */
+        /* ========== HEADER ========== */
         header {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 20px 0;
@@ -53,13 +61,16 @@
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
             color: var(--dark);
             text-decoration: none;
             display: flex;
             align-items: center;
+            z-index: 1001;
             transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 700;
         }
         
         .logo:hover {
@@ -69,8 +80,14 @@
         
         .logo i {
             margin-right: 10px;
+            transition: all 0.3s ease;
         }
         
+        .logo:hover i {
+            transform: rotate(-15deg);
+        }
+        
+        /* ========== DROPDOWN MENU ========== */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -120,6 +137,10 @@
             font-weight: 500;
         }
         
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
         .dropdown-content a:hover {
             background-color: var(--primary);
             color: var(--dark);
@@ -134,11 +155,17 @@
         
         .dropdown:hover .dropdown-content {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
         
-        /* Page Content */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ========== PAGE CONTENT ========== */
         .page-content {
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
         }
         
         .booking-container {
@@ -152,8 +179,14 @@
             background: white;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .booking-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
         
         .booking-info h3 {
@@ -179,14 +212,21 @@
             position: absolute;
             left: 0;
             font-weight: bold;
+            font-size: 1.2rem;
         }
         
         .booking-form {
             background: white;
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .booking-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
         
         .form-group {
@@ -196,7 +236,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--dark);
         }
         
@@ -215,6 +255,7 @@
         .form-control:focus {
             outline: none;
             border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 133, 162, 0.1);
         }
         
         .form-row {
@@ -225,7 +266,7 @@
         
         .package-selection {
             background: var(--light);
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             margin-bottom: 20px;
             border: 1px solid var(--primary);
@@ -234,20 +275,24 @@
         .package-option {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
         
         .package-option:hover {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.7);
+            border-color: var(--primary);
+            transform: translateX(5px);
         }
         
         .package-option input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
         }
         
         .package-details {
@@ -257,11 +302,13 @@
         .package-name {
             font-weight: 600;
             color: var(--dark);
+            font-size: 1.1rem;
         }
         
         .package-price {
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 700;
+            font-size: 1.2rem;
         }
         
         .total-section {
@@ -271,13 +318,19 @@
             margin-top: 30px;
             border: 2px solid var(--accent);
             text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .total-section:hover {
+            transform: scale(1.02);
         }
         
         .total-amount {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--accent);
             font-weight: 700;
             margin: 10px 0;
+            font-family: 'Playfair Display', serif;
         }
         
         .total-note {
@@ -298,14 +351,16 @@
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .btn-payment:hover {
             background-color: var(--secondary);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        /* Footer Styles */
+        /* ========== FOOTER ========== */
         footer {
             background-color: var(--dark);
             padding: 60px 0 30px;
@@ -333,6 +388,10 @@
             text-decoration: none;
         }
         
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+        
         .social-icons {
             display: flex;
             justify-content: center;
@@ -352,6 +411,12 @@
             transition: all 0.3s;
         }
         
+        .social-icons a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -359,6 +424,7 @@
             font-size: 0.9rem;
         }
         
+        /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 768px) {
             .booking-container {
                 grid-template-columns: 1fr;
@@ -367,10 +433,44 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            
+            .dropdown-content {
+                right: -50px;
+                min-width: 200px;
+            }
+            
+            .logo {
+                font-size: 30px;
+            }
+            
+            .page-content {
+                padding: 120px 0 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dropdown-content {
+                right: -80px;
+                min-width: 180px;
+            }
+            
+            .dropbtn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 26px;
+            }
+            
+            .booking-info, .booking-form {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ========== HEADER ========== -->
     <header>
         <div class="container header-container">
             <a href="index.html" class="logo">
@@ -378,6 +478,7 @@
                 The Lily's Experience
             </a>
             
+            <!-- Menú Desplegable -->
             <div class="dropdown">
                 <button class="dropbtn">
                     <i class="fas fa-bars"></i>
@@ -398,7 +499,7 @@
 
     <div class="page-content">
         <div class="container">
-            <h1 style="text-align: center; margin-bottom: 50px;">Book Your Event</h1>
+            <h1 style="text-align: center; margin-bottom: 50px; font-family: 'Playfair Display', serif;">Book Your Event</h1>
             
             <div class="booking-container">
                 <div class="booking-info">
@@ -580,38 +681,37 @@
         </div>
     </div>
 
+    <!-- ========== FOOTER ========== -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>The Lily's Experience</h3>
-                    <p>Creating unforgettable cocktail experiences for your special events with premium service and custom-crafted beverages.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
-                    </div>
+                    <p>Premium bartending services for all types of events. Creating memorable experiences through mixology.</p>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Mixology Lane, Barville</p>
-                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
-                    <p><i class="fas fa-envelope"></i> info@lilysexperience.com</p>
-                    <p><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</p>
-                </div>
-                
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <a href="index.html">Home</a>
-                    <a href="about.html">About Us</a>
+                    <a href="about.html">About</a>
                     <a href="packages.html">Packages</a>
                     <a href="gallery.html">Gallery</a>
-                    <a href="booking.html">Book Now</a>
+                    <a href="testimonials.html">Reviews</a>
+                    <a href="booking.html">Booking</a>
+                    <a href="careers.html">Work With Us</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-user"></i> Contact: Lily</p>
+                    <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
                 </div>
             </div>
-            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
             </div>
@@ -619,6 +719,27 @@
     </footer>
 
     <script>
+        // Cerrar menú desplegable al hacer clic fuera de él
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown');
+            if (!dropdown.contains(event.target)) {
+                const dropdownContent = document.querySelector('.dropdown-content');
+                dropdownContent.style.display = 'none';
+            }
+        });
+
+        // Mantener el menú abierto cuando se pasa el mouse sobre él
+        const dropdown = document.querySelector('.dropdown');
+        const dropdownContent = document.querySelector('.dropdown-content');
+        
+        dropdown.addEventListener('mouseenter', function() {
+            dropdownContent.style.display = 'block';
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownContent.style.display = 'none';
+        });
+
         // Calculate total based on selected packages
         document.addEventListener('DOMContentLoaded', function() {
             const checkboxes = document.querySelectorAll('input[name="package"]');
@@ -669,3 +790,4 @@
     </script>
 </body>
 </html>
+
