@@ -6,13 +6,14 @@
     <title>Work With Us - The Lily's Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #f8c8dc;
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #8a5d7e;
+            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
             --text: #5e4a4e;
         }
         
@@ -27,6 +28,13 @@
             color: var(--text);
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
         }
         
         .container {
@@ -35,7 +43,7 @@
             padding: 0 20px;
         }
         
-        /* Header Styles */
+        /* ========== HEADER ========== */
         header {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 20px 0;
@@ -53,13 +61,16 @@
         }
         
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
             color: var(--dark);
             text-decoration: none;
             display: flex;
             align-items: center;
+            z-index: 1001;
             transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 700;
         }
         
         .logo:hover {
@@ -69,8 +80,14 @@
         
         .logo i {
             margin-right: 10px;
+            transition: all 0.3s ease;
         }
         
+        .logo:hover i {
+            transform: rotate(-15deg);
+        }
+        
+        /* ========== DROPDOWN MENU ========== */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -120,6 +137,10 @@
             font-weight: 500;
         }
         
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+        
         .dropdown-content a:hover {
             background-color: var(--primary);
             color: var(--dark);
@@ -134,16 +155,34 @@
         
         .dropdown:hover .dropdown-content {
             display: block;
+            animation: fadeIn 0.3s ease;
         }
         
-        /* Page Content */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ========== PAGE CONTENT ========== */
         .page-content {
-            padding: 120px 0 80px;
+            padding: 140px 0 80px;
         }
         
         .careers-hero {
             text-align: center;
             margin-bottom: 60px;
+        }
+        
+        .careers-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .careers-hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--dark);
         }
         
         .careers-grid {
@@ -157,29 +196,66 @@
             background: white;
             padding: 40px 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--primary);
-            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
             text-align: center;
         }
         
         .career-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
         
         .career-icon {
             font-size: 3rem;
             color: var(--accent);
             margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .career-card:hover .career-icon {
+            transform: scale(1.1);
+        }
+        
+        .career-card h3 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .career-card ul {
+            text-align: left;
+            margin: 20px 0;
+            list-style: none;
+        }
+        
+        .career-card li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .career-card li:before {
+            content: '✓';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.1rem;
         }
         
         .benefits-section {
             background: white;
             padding: 50px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border: 1px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
             margin-bottom: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefits-section:hover {
+            transform: translateY(-5px);
         }
         
         .benefits-grid {
@@ -191,13 +267,27 @@
         
         .benefit-item {
             text-align: center;
-            padding: 20px;
+            padding: 25px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .benefit-item:hover {
+            background: var(--light);
+            border-color: var(--primary);
+            transform: translateY(-5px);
         }
         
         .benefit-item i {
             font-size: 2.5rem;
             color: var(--accent);
             margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover i {
+            transform: scale(1.1);
         }
         
         .application-section {
@@ -206,6 +296,12 @@
             padding: 50px;
             border-radius: 15px;
             border: 2px dashed var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .application-section:hover {
+            border-style: solid;
+            transform: scale(1.02);
         }
         
         .btn {
@@ -221,14 +317,16 @@
             cursor: pointer;
             transition: all 0.3s;
             margin-top: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
         
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        /* Footer Styles */
+        /* ========== FOOTER ========== */
         footer {
             background-color: var(--dark);
             padding: 60px 0 30px;
@@ -256,6 +354,10 @@
             text-decoration: none;
         }
         
+        .footer-column a:hover {
+            color: var(--primary);
+        }
+        
         .social-icons {
             display: flex;
             justify-content: center;
@@ -275,15 +377,78 @@
             transition: all 0.3s;
         }
         
+        .social-icons a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--primary);
             font-size: 0.9rem;
         }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 768px) {
+            .careers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-section, .application-section {
+                padding: 30px;
+            }
+            
+            .dropdown-content {
+                right: -50px;
+                min-width: 200px;
+            }
+            
+            .logo {
+                font-size: 30px;
+            }
+            
+            .page-content {
+                padding: 120px 0 60px;
+            }
+            
+            .careers-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .dropdown-content {
+                right: -80px;
+                min-width: 180px;
+            }
+            
+            .dropbtn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 26px;
+            }
+            
+            .career-card {
+                padding: 25px 20px;
+            }
+            
+            .careers-hero h1 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- ========== HEADER ========== -->
     <header>
         <div class="container header-container">
             <a href="index.html" class="logo">
@@ -291,6 +456,7 @@
                 The Lily's Experience
             </a>
             
+            <!-- Menú Desplegable -->
             <div class="dropdown">
                 <button class="dropbtn">
                     <i class="fas fa-bars"></i>
@@ -313,7 +479,7 @@
         <div class="container">
             <div class="careers-hero">
                 <h1>Join Our Team</h1>
-                <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                <p>
                     Become part of an exceptional team dedicated to creating unforgettable experiences through expert mixology
                 </p>
             </div>
@@ -325,11 +491,11 @@
                     </div>
                     <h3>Professional Bartender</h3>
                     <p>We're looking for skilled bartenders with a passion for mixology and exceptional customer service.</p>
-                    <ul style="text-align: left; margin: 20px 0; list-style: none;">
-                        <li>✓ 2+ years experience</li>
-                        <li>✓ Knowledge of classic cocktails</li>
-                        <li>✓ Excellent communication skills</li>
-                        <li>✓ Flexible schedule</li>
+                    <ul>
+                        <li>2+ years experience</li>
+                        <li>Knowledge of classic cocktails</li>
+                        <li>Excellent communication skills</li>
+                        <li>Flexible schedule</li>
                     </ul>
                 </div>
                 
@@ -339,11 +505,11 @@
                     </div>
                     <h3>Barback / Trainee</h3>
                     <p>Start your career in mixology! We provide training for motivated individuals eager to learn.</p>
-                    <ul style="text-align: left; margin: 20px 0; list-style: none;">
-                        <li>✓ No experience required</li>
-                        <li>✓ Willingness to learn</li>
-                        <li>✓ Strong work ethic</li>
-                        <li>✓ Positive attitude</li>
+                    <ul>
+                        <li>No experience required</li>
+                        <li>Willingness to learn</li>
+                        <li>Strong work ethic</li>
+                        <li>Positive attitude</li>
                     </ul>
                 </div>
                 
@@ -353,11 +519,11 @@
                     </div>
                     <h3>Event Setup Crew</h3>
                     <p>Help us create amazing event setups and ensure everything runs smoothly behind the scenes.</p>
-                    <ul style="text-align: left; margin: 20px 0; list-style: none;">
-                        <li>✓ Physical fitness</li>
-                        <li>✓ Attention to detail</li>
-                        <li>✓ Reliable transportation</li>
-                        <li>✓ Team player</li>
+                    <ul>
+                        <li>Physical fitness</li>
+                        <li>Attention to detail</li>
+                        <li>Reliable transportation</li>
+                        <li>Team player</li>
                     </ul>
                 </div>
             </div>
@@ -401,12 +567,23 @@
         </div>
     </div>
 
+    <!-- ========== FOOTER ========== -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>The Lily's Experience</h3>
-                    <p>Premium bartending services for all types of events.</p>
+                    <p>Premium bartending services for all types of events. Creating memorable experiences through mixology.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="packages.html">Packages</a>
+                    <a href="gallery.html">Gallery</a>
+                    <a href="testimonials.html">Reviews</a>
+                    <a href="booking.html">Booking</a>
+                    <a href="careers.html">Work With Us</a>
                 </div>
                 <div class="footer-column">
                     <h3>Contact Us</h3>
@@ -419,6 +596,7 @@
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
@@ -427,6 +605,7 @@
     </footer>
 
     <script>
+        // Cerrar menú desplegable al hacer clic fuera de él
         document.addEventListener('click', function(event) {
             const dropdown = document.querySelector('.dropdown');
             if (!dropdown.contains(event.target)) {
@@ -435,6 +614,7 @@
             }
         });
 
+        // Mantener el menú abierto cuando se pasa el mouse sobre él
         const dropdown = document.querySelector('.dropdown');
         const dropdownContent = document.querySelector('.dropdown-content');
         
