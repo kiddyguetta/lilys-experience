@@ -13,7 +13,7 @@
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
+            --dark: #DFB2B5;
             --text: #5e4a4e;
         }
         
@@ -192,15 +192,36 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
-        .gallery-item img {
+        .gallery-item img, .gallery-item video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
         
-        .gallery-item:hover img {
+        .gallery-item:hover img, .gallery-item:hover video {
             transform: scale(1.1);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover .video-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.5);
         }
         
         .gallery-categories {
@@ -229,6 +250,46 @@
             border-color: var(--accent);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 133, 162, 0.3);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 2%;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 2001;
+        }
+        
+        .close:hover {
+            color: var(--accent);
+            transform: scale(1.2);
         }
         
         /* ========== FOOTER ========== */
@@ -327,6 +388,18 @@
             .page-content {
                 padding: 120px 0 60px;
             }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 80%;
+                margin-top: 10%;
+            }
+            
+            .close {
+                top: 10px;
+                right: 20px;
+                font-size: 30px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -405,35 +478,64 @@
                 <button class="category-btn" data-category="corporate">Corporate Events</button>
                 <button class="category-btn" data-category="private">Private Parties</button>
                 <button class="category-btn" data-category="cocktails">Cocktails</button>
+                <button class="category-btn" data-category="video">Video</button>
             </div>
             
             <div class="gallery-grid">
+                <!-- Imagen 1 -->
                 <div class="gallery-item" data-category="weddings">
-                    <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wedding Bartending">
+                    <img src="images/Imagen1.jpg" alt="Wedding Bartending Service">
                 </div>
+                
+                <!-- Imagen 2 -->
                 <div class="gallery-item" data-category="cocktails">
-                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Craft Cocktails">
+                    <img src="images/Imagen2.jpg" alt="Craft Cocktails">
                 </div>
+                
+                <!-- Imagen 3 -->
                 <div class="gallery-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corporate Event">
+                    <img src="images/Imagen3.jpg" alt="Corporate Event Bartending">
                 </div>
+                
+                <!-- Imagen 4 -->
                 <div class="gallery-item" data-category="cocktails">
-                    <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Signature Cocktails">
+                    <img src="images/Imagen4.jpg" alt="Signature Cocktails">
                 </div>
+                
+                <!-- Imagen 5 -->
                 <div class="gallery-item" data-category="private">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Private Party">
+                    <img src="images/Imagen5.jpg" alt="Private Party Service">
                 </div>
+                
+                <!-- Imagen 7 -->
                 <div class="gallery-item" data-category="weddings">
-                    <img src="https://images.unsplash.com/photo-1563227815-6e5a7b7b0c0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wedding Reception">
+                    <img src="images/Imagen7.jpg" alt="Wedding Reception">
                 </div>
-                <div class="gallery-item" data-category="corporate">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corporate Gathering">
-                </div>
+                
+                <!-- Imagen 8 -->
                 <div class="gallery-item" data-category="cocktails">
-                    <img src="https://images.unsplash.com/photo-1572116465186-631f946e3d6f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Creative Mixology">
+                    <img src="images/Imagen8.png" alt="Creative Mixology">
+                </div>
+                
+                <!-- Video 1 -->
+                <div class="gallery-item" data-category="video">
+                    <video muted>
+                        <source src="images/Video1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modal para mostrar imágenes/videos en grande -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <video class="modal-content" id="modalVideo" controls style="display:none;"></video>
     </div>
 
     <!-- ========== FOOTER ========== -->
@@ -495,6 +597,47 @@
                     }
                 });
             });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const modalVideo = document.getElementById("modalVideo");
+        const closeBtn = document.querySelector(".close");
+
+        // Open modal when clicking on gallery items
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                const video = item.querySelector('video');
+                
+                if (img) {
+                    modal.style.display = "block";
+                    modalImg.src = img.src;
+                    modalImg.style.display = "block";
+                    modalVideo.style.display = "none";
+                } else if (video) {
+                    modal.style.display = "block";
+                    modalVideo.src = video.querySelector('source').src;
+                    modalVideo.style.display = "block";
+                    modalImg.style.display = "none";
+                    modalVideo.play();
+                }
+            });
+        });
+
+        // Close modal
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = "none";
+            modalVideo.pause();
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                modalVideo.pause();
+            }
         });
 
         // Cerrar menú desplegable al hacer clic fuera de él
