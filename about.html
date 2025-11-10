@@ -13,7 +13,7 @@
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
+            --dark: #DFB2B5;
             --text: #5e4a4e;
         }
         
@@ -180,6 +180,12 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
         }
         
         .about-image:hover {
@@ -189,7 +195,8 @@
         
         .about-image img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
             transition: all 0.3s ease;
         }
@@ -233,6 +240,31 @@
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
+        }
+
+        /* Placeholder style */
+        .photo-placeholder {
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+
+        .photo-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .upload-instructions {
+            background: var(--light);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .upload-instructions h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
         }
         
         /* ========== FOOTER ========== */
@@ -321,6 +353,10 @@
             .page-content {
                 padding: 120px 0 60px;
             }
+
+            .about-image {
+                min-height: 300px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -381,10 +417,27 @@
                     <h3>Crafting Unforgettable Experiences</h3>
                     <p>The Lily's Experience brings a new level of sophistication to event bartending. With over 5 years of experience in the hospitality industry, our team of skilled mixologists creates not just drinks, but memorable experiences for your guests.</p>
                     <p>We specialize in custom cocktail menus, flair bartending performances, and providing exceptional service that will make your event truly stand out.</p>
-                    <a href="contact.html" class="btn">Get in Touch</a>
+                    <a href="booking.html" class="btn">Get in Touch</a>
+
+                    <!-- Instrucciones para subir la foto -->
+                    <div class="upload-instructions">
+                        <h4>📸 Para agregar tu foto:</h4>
+                        <p>1. Ve a GitHub → tu repositorio</p>
+                        <p>2. Crea carpeta "images" y sube "Imagen8.png"</p>
+                        <p>3. La foto aparecerá automáticamente aquí</p>
+                    </div>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bartender preparing a cocktail">
+                    <!-- TU FOTO PERSONAL - Reemplaza con Imagen8.png -->
+                    <img src="images/Imagen8.png" alt="Lily - Professional Bartender at The Lily's Experience" 
+                         onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
+                    
+                    <!-- Placeholder que se muestra si la imagen no carga -->
+                    <div id="photo-placeholder" class="photo-placeholder" style="display: none;">
+                        <i class="fas fa-camera"></i>
+                        <h3>Tu foto aparecerá aquí</h3>
+                        <p>Sube "Imagen8.png" a la carpeta images/ en GitHub</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -447,6 +500,21 @@
         
         dropdown.addEventListener('mouseleave', function() {
             dropdownContent.style.display = 'none';
+        });
+
+        // Verificar si la imagen se carga correctamente
+        document.addEventListener('DOMContentLoaded', function() {
+            const img = document.querySelector('.about-image img');
+            const placeholder = document.getElementById('photo-placeholder');
+            
+            // Verificar después de que la página cargue completamente
+            setTimeout(function() {
+                if (img.naturalHeight === 0) {
+                    // La imagen no se cargó
+                    img.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            }, 1000);
         });
     </script>
 </body>
