@@ -13,7 +13,7 @@
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
+            --dark: #DFB2B5;
             --text: #5e4a4e;
         }
         
@@ -339,9 +339,9 @@
             opacity: 0.8;
         }
         
-        .btn-payment {
+        .btn-whatsapp {
             width: 100%;
-            background-color: var(--accent);
+            background-color: #25D366;
             color: white;
             padding: 18px;
             border: none;
@@ -354,10 +354,38 @@
             font-family: 'Montserrat', sans-serif;
         }
         
-        .btn-payment:hover {
-            background-color: var(--secondary);
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-email {
+            width: 100%;
+            background-color: #EA4335;
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .btn-email:hover {
+            background-color: #D33426;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(234, 67, 53, 0.3);
+        }
+        
+        .contact-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
         }
         
         /* ========== FOOTER ========== */
@@ -431,6 +459,10 @@
             }
             
             .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-options {
                 grid-template-columns: 1fr;
             }
             
@@ -593,16 +625,16 @@
                         
                         <!-- Cocktail Packages -->
                         <div class="package-option">
-                            <input type="checkbox" id="package1" name="package" value="basic-bartending" data-price="50">
+                            <input type="checkbox" id="package1" name="package" value="basic-bartending" data-price="150">
                             <div class="package-details">
                                 <div class="package-name">Basic Bartending Services</div>
-                                <div class="package-price">$150/5 hr</div>
+                                <div class="package-price">$50/hr</div>
                                 <small>Certified bartender, client provides supplies</small>
                             </div>
                         </div>
                         
                         <div class="package-option">
-                            <input type="checkbox" id="package2" name="package" value="essential" data-price="450">
+                            <input type="checkbox" id="package2" name="package" value="essential" data-price="500">
                             <div class="package-details">
                                 <div class="package-name">Essential Experience</div>
                                 <div class="package-price">$500</div>
@@ -611,7 +643,7 @@
                         </div>
                         
                         <div class="package-option">
-                            <input type="checkbox" id="package3" name="package" value="premium" data-price="800">
+                            <input type="checkbox" id="package3" name="package" value="premium" data-price="850">
                             <div class="package-details">
                                 <div class="package-name">Premium Experience</div>
                                 <div class="package-price">$850</div>
@@ -620,7 +652,7 @@
                         </div>
                         
                         <div class="package-option">
-                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1400">
+                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1500">
                             <div class="package-details">
                                 <div class="package-name">Luxury Experience</div>
                                 <div class="package-price">$1,500</div>
@@ -668,9 +700,15 @@
                         <p class="total-note">* Final pricing may vary based on specific requirements</p>
                     </div>
                     
-                    <button class="btn-payment">
-                        <i class="fas fa-lock"></i> Proceed to Secure Booking
-                    </button>
+                    <div class="contact-options">
+                        <button class="btn-whatsapp" onclick="sendWhatsApp()">
+                            <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                        </button>
+                        
+                        <button class="btn-email" onclick="sendEmail()">
+                            <i class="fas fa-envelope"></i> Send via Email
+                        </button>
+                    </div>
                     
                     <p style="text-align: center; margin-top: 15px; font-size: 0.9rem;">
                         By booking, you agree to our <a href="#" style="color: var(--accent);">Terms of Service</a> and <a href="#" style="color: var(--accent);">Privacy Policy</a>
@@ -702,14 +740,14 @@
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-user"></i> Contact: Lily</p>
                     <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
-                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
+                    <p><i class="fas fa-phone"></i> Phone: +593 99 888 4004</p>
                 </div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/593998884004" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
@@ -757,39 +795,158 @@
                 });
                 totalAmount.textContent = '$' + total.toLocaleString();
             }
+        });
+
+        // WhatsApp Function - Updated to +593998884004
+        function sendWhatsApp() {
+            // Validación
+            const requiredFields = document.querySelectorAll('[required]');
+            let valid = true;
             
-            // Form submission handling
-            const bookingForm = document.querySelector('.booking-form');
-            bookingForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation
-                const requiredFields = bookingForm.querySelectorAll('[required]');
-                let valid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value.trim()) {
-                        valid = false;
-                        field.style.borderColor = 'red';
-                    } else {
-                        field.style.borderColor = '';
-                    }
-                });
-                
-                if (valid) {
-                    // In a real application, you would submit the form data to a server
-                    alert('Thank you for your booking request! We will contact you within 24 hours to confirm your event details.');
-                    bookingForm.reset();
-                    totalAmount.textContent = '$0';
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = 'red';
                 } else {
-                    alert('Please fill in all required fields.');
+                    field.style.borderColor = '';
                 }
             });
-        });
+            
+            if (!valid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Obtener datos del formulario
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const eventTime = document.getElementById('eventTime').value;
+            const eventType = document.getElementById('eventType').value;
+            const guests = document.getElementById('guests').value;
+            const venue = document.getElementById('venue').value;
+            const specialRequests = document.getElementById('specialRequests').value;
+            
+            // Obtener paquetes seleccionados
+            const selectedPackages = [];
+            const checkboxes = document.querySelectorAll('input[name="package"]:checked');
+            checkboxes.forEach(checkbox => {
+                selectedPackages.push(checkbox.nextElementSibling.querySelector('.package-name').textContent);
+            });
+            
+            const total = document.querySelector('.total-amount').textContent;
+            
+            // Crear mensaje
+            const message = `🎉 *NUEVA SOLICITUD DE RESERVA* 🎉
+
+*Información del Cliente:*
+👤 Nombre: ${name}
+📧 Email: ${email}
+📞 Teléfono: ${phone}
+
+*Detalles del Evento:*
+📅 Fecha: ${eventDate}
+⏰ Hora: ${eventTime}
+🎊 Tipo de Evento: ${eventType}
+👥 Invitados: ${guests}
+📍 Lugar: ${venue || 'No especificado'}
+
+*Paquetes Seleccionados:*
+${selectedPackages.map(pkg => `• ${pkg}`).join('\n')}
+
+💰 *Total Estimado: ${total}*
+
+*Solicitudes Especiales:*
+${specialRequests || 'Ninguna'}
+
+---
+*Enviado desde el sitio web de The Lily's Experience*`;
+
+            // Codificar mensaje para URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Abrir WhatsApp con el nuevo número
+            const whatsappUrl = `https://wa.me/593980938296?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Email Function
+        function sendEmail() {
+            // Validación
+            const requiredFields = document.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    valid = false;
+                    field.style.borderColor = 'red';
+                } else {
+                    field.style.borderColor = '';
+                }
+            });
+            
+            if (!valid) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Obtener datos del formulario
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const eventDate = document.getElementById('eventDate').value;
+            const eventTime = document.getElementById('eventTime').value;
+            const eventType = document.getElementById('eventType').value;
+            const guests = document.getElementById('guests').value;
+            const venue = document.getElementById('venue').value;
+            const specialRequests = document.getElementById('specialRequests').value;
+            
+            // Obtener paquetes seleccionados
+            const selectedPackages = [];
+            const checkboxes = document.querySelectorAll('input[name="package"]:checked');
+            checkboxes.forEach(checkbox => {
+                selectedPackages.push(checkbox.nextElementSibling.querySelector('.package-name').textContent);
+            });
+            
+            const total = document.querySelector('.total-amount').textContent;
+            
+            // Crear asunto y cuerpo del email
+            const subject = `Nueva Solicitud de Reserva - ${name} - ${eventDate}`;
+            const body = `
+NUEVA SOLICITUD DE RESERVA - The Lily's Experience
+
+INFORMACIÓN DEL CLIENTE:
+Nombre: ${name}
+Email: ${email}
+Teléfono: ${phone}
+
+DETALLES DEL EVENTO:
+Fecha: ${eventDate}
+Hora: ${eventTime}
+Tipo de Evento: ${eventType}
+Número de Invitados: ${guests}
+Lugar: ${venue || 'No especificado'}
+
+PAQUETES SELECCIONADOS:
+${selectedPackages.map(pkg => `• ${pkg}`).join('\n')}
+
+TOTAL ESTIMADO: ${total}
+
+SOLICITUDES ESPECIALES:
+${specialRequests || 'Ninguna'}
+
+---
+Este mensaje fue enviado desde el formulario de reservas del sitio web de The Lily's Experience.
+            `;
+            
+            // Abrir cliente de email
+            const mailtoUrl = `mailto:thelilysexperience1@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoUrl;
+        }
     </script>
 </body>
 </html>
-
 
 
 
