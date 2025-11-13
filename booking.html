@@ -311,6 +311,37 @@
             font-size: 1.2rem;
         }
         
+        .hours-selection {
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .hours-selection label {
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .hours-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hours-input input {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid var(--primary);
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .hours-input span {
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
         .total-section {
             background: var(--light);
             padding: 25px;
@@ -592,22 +623,29 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="eventTime">Event Time *</label>
-                            <input type="time" id="eventTime" class="form-control" required>
+                            <label for="eventType">Event Type *</label>
+                            <select id="eventType" class="form-control" required>
+                                <option value="">Select Event Type</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="corporate">Corporate Event</option>
+                                <option value="birthday">Birthday Party</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="holiday">Holiday Party</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="eventType">Event Type *</label>
-                        <select id="eventType" class="form-control" required>
-                            <option value="">Select Event Type</option>
-                            <option value="wedding">Wedding</option>
-                            <option value="corporate">Corporate Event</option>
-                            <option value="birthday">Birthday Party</option>
-                            <option value="anniversary">Anniversary</option>
-                            <option value="holiday">Holiday Party</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startTime">Start Time *</label>
+                            <input type="time" id="startTime" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="endTime">End Time *</label>
+                            <input type="time" id="endTime" class="form-control" required>
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -625,11 +663,18 @@
                         
                         <!-- Cocktail Packages -->
                         <div class="package-option">
-                            <input type="checkbox" id="package1" name="package" value="basic-bartending" data-price="150">
+                            <input type="checkbox" id="package1" name="package" value="basic-bartending" data-price="50" data-hourly="true">
                             <div class="package-details">
                                 <div class="package-name">Basic Bartending Services</div>
                                 <div class="package-price">$50/hr</div>
                                 <small>Certified bartender, client provides supplies</small>
+                                <div class="hours-selection" id="hours-selection-1">
+                                    <label>Number of hours:</label>
+                                    <div class="hours-input">
+                                        <input type="number" id="hours-input-1" min="1" max="12" value="5" onchange="updatePackagePrice('package1')">
+                                        <span>hours</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -783,19 +828,58 @@
             const totalAmount = document.querySelector('.total-amount');
             
             checkboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateTotal);
+                checkbox.addEventListener('change', function() {
+                    // Show/hide hours selection for Basic Bartending Services
+                    if (checkbox.id === 'package1') {
+                        const hoursSelection = document.getElementById('hours-selection-1');
+                        if (checkbox.checked) {
+                            hoursSelection.style.display = 'block';
+                        } else {
+                            hoursSelection.style.display = 'none';
+                        }
+                    }
+                    updateTotal();
+                });
             });
+            
+            // Add event listener for hours input
+            const hoursInput = document.getElementById('hours-input-1');
+            hoursInput.addEventListener('change', updateTotal);
             
             function updateTotal() {
                 let total = 0;
                 checkboxes.forEach(checkbox => {
                     if (checkbox.checked) {
-                        total += parseInt(checkbox.getAttribute('data-price'));
+                        let price = parseInt(checkbox.getAttribute('data-price'));
+                        
+                        // If it's the hourly package, calculate based on hours
+                        if (checkbox.id === 'package1' && checkbox.getAttribute('data-hourly') === 'true') {
+                            const hours = parseInt(document.getElementById('hours-input-1').value) || 5;
+                            price = price * hours;
+                        }
+                        
+                        total += price;
                     }
                 });
                 totalAmount.textContent = '$' + total.toLocaleString();
             }
         });
+
+        // Update package price when hours change
+        function updatePackagePrice(packageId) {
+            if (packageId === 'package1') {
+                const checkbox = document.getElementById(packageId);
+                const hoursInput = document.getElementById('hours-input-1');
+                const hours = parseInt(hoursInput.value) || 5;
+                const hourlyRate = parseInt(checkbox.getAttribute('data-price'));
+                const totalPrice = hourlyRate * hours;
+                
+                // Update the displayed price
+                const priceElement = checkbox.parentElement.querySelector('.package-price');
+                priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
+            }
+            updateTotal();
+        }
 
         // WhatsApp Function - Updated to +593998884004
         function sendWhatsApp() {
@@ -822,7 +906,8 @@
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const eventDate = document.getElementById('eventDate').value;
-            const eventTime = document.getElementById('eventTime').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
             const eventType = document.getElementById('eventType').value;
             const guests = document.getElementById('guests').value;
             const venue = document.getElementById('venue').value;
@@ -832,7 +917,15 @@
             const selectedPackages = [];
             const checkboxes = document.querySelectorAll('input[name="package"]:checked');
             checkboxes.forEach(checkbox => {
-                selectedPackages.push(checkbox.nextElementSibling.querySelector('.package-name').textContent);
+                let packageText = checkbox.nextElementSibling.querySelector('.package-name').textContent;
+                
+                // Add hours information for Basic Bartending Services
+                if (checkbox.id === 'package1') {
+                    const hours = document.getElementById('hours-input-1').value || '5';
+                    packageText += ` (${hours} hours)`;
+                }
+                
+                selectedPackages.push(packageText);
             });
             
             const total = document.querySelector('.total-amount').textContent;
@@ -847,7 +940,7 @@
 
 *Detalles del Evento:*
 📅 Fecha: ${eventDate}
-⏰ Hora: ${eventTime}
+⏰ Horario: ${startTime} - ${endTime}
 🎊 Tipo de Evento: ${eventType}
 👥 Invitados: ${guests}
 📍 Lugar: ${venue || 'No especificado'}
@@ -867,7 +960,7 @@ ${specialRequests || 'Ninguna'}
             const encodedMessage = encodeURIComponent(message);
             
             // Abrir WhatsApp con el nuevo número
-            const whatsappUrl = `https://wa.me/593980938296?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/593998884004?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
         }
 
@@ -896,7 +989,8 @@ ${specialRequests || 'Ninguna'}
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const eventDate = document.getElementById('eventDate').value;
-            const eventTime = document.getElementById('eventTime').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
             const eventType = document.getElementById('eventType').value;
             const guests = document.getElementById('guests').value;
             const venue = document.getElementById('venue').value;
@@ -906,7 +1000,15 @@ ${specialRequests || 'Ninguna'}
             const selectedPackages = [];
             const checkboxes = document.querySelectorAll('input[name="package"]:checked');
             checkboxes.forEach(checkbox => {
-                selectedPackages.push(checkbox.nextElementSibling.querySelector('.package-name').textContent);
+                let packageText = checkbox.nextElementSibling.querySelector('.package-name').textContent;
+                
+                // Add hours information for Basic Bartending Services
+                if (checkbox.id === 'package1') {
+                    const hours = document.getElementById('hours-input-1').value || '5';
+                    packageText += ` (${hours} hours)`;
+                }
+                
+                selectedPackages.push(packageText);
             });
             
             const total = document.querySelector('.total-amount').textContent;
@@ -923,7 +1025,7 @@ Teléfono: ${phone}
 
 DETALLES DEL EVENTO:
 Fecha: ${eventDate}
-Hora: ${eventTime}
+Horario: ${startTime} - ${endTime}
 Tipo de Evento: ${eventType}
 Número de Invitados: ${guests}
 Lugar: ${venue || 'No especificado'}
@@ -947,6 +1049,4 @@ Este mensaje fue enviado desde el formulario de reservas del sitio web de The Li
     </script>
 </body>
 </html>
-
-
 
