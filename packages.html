@@ -13,7 +13,7 @@
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
+            --dark: #DFB2B5;
             --text: #5e4a4e;
         }
         
@@ -33,7 +33,7 @@
         
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: var(--dark);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             margin-bottom: 1.5rem;
         }
         
@@ -185,6 +185,7 @@
             transition: all 0.3s ease;
             font-weight: 600;
             font-size: 1.1rem;
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             font-family: 'Montserrat', sans-serif;
         }
         
@@ -254,7 +255,7 @@
         .package-content h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
         }
         
         .package-price {
@@ -274,6 +275,7 @@
             margin-bottom: 10px;
             padding-left: 25px;
             position: relative;
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
         }
         
         .package-features li:before {
@@ -296,7 +298,11 @@
         .addons h4 {
             margin-bottom: 10px;
             font-size: 1.1rem;
-            color: var(--dark);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+        }
+        
+        .addons p {
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
         }
         
         .catering-category {
@@ -314,10 +320,14 @@
         }
         
         .catering-category h3 {
-            color: var(--dark);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             margin-bottom: 20px;
             border-bottom: 2px solid var(--primary);
             padding-bottom: 10px;
+        }
+        
+        .catering-category p {
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
         }
         
         .menu-items {
@@ -332,6 +342,7 @@
             background: var(--light);
             border-radius: 5px;
             transition: all 0.3s ease;
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
         }
         
         .menu-item:hover {
@@ -354,6 +365,14 @@
         .custom-package:hover {
             border-style: solid;
             transform: scale(1.02);
+        }
+        
+        .custom-package h3 {
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+        }
+        
+        .custom-package p {
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
         }
         
         .btn {
@@ -380,7 +399,7 @@
         
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--dark);
+            background-color: #DFB2B5; /* Usando el color específico en lugar de var(--dark) para consistencia */
             padding: 60px 0 30px;
             text-align: center;
             color: white;
@@ -396,14 +415,16 @@
         .footer-column h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--primary);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
         }
         
         .footer-column p, .footer-column a {
-            color: var(--light);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             margin-bottom: 10px;
             display: block;
             text-decoration: none;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
         .footer-column a:hover {
@@ -438,8 +459,9 @@
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--primary);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
         /* ========== RESPONSIVE DESIGN ========== */
@@ -535,7 +557,7 @@
     <div class="page-content">
         <div class="container">
             <h1 style="text-align: center; margin-bottom: 20px; font-family: 'Playfair Display', serif;">Our Packages</h1>
-            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: var(--dark);">
+            <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; color: #4a3a3e;">
                 Choose between our expert cocktail services or full catering packages
             </p>
             
@@ -874,14 +896,14 @@
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-user"></i> Contact: Lily</p>
                     <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
-                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
+                    <p><i class="fas fa-phone"></i> Phone: +593 99 888 4004</p>
                 </div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/593998884004" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
