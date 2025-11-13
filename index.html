@@ -13,9 +13,8 @@
             --secondary: #f4acb7;
             --accent: #ff85a2;
             --light: #f9f0f5;
-            --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
+            --dark: #DFB2B5;
             --text: #5e4a4e;
-            --hero-text: #4a3a3e; /* Nuevo color más oscuro para el hero */
         }
         
         * {
@@ -62,8 +61,8 @@
         }
         
         .logo {
-            font-family: 'Dancing Script', cursive; /* Changed to script font */
-            font-size: 36px; /* Slightly larger for better visibility */
+            font-family: 'Dancing Script', cursive;
+            font-size: 36px;
             color: var(--dark);
             text-decoration: none;
             display: flex;
@@ -182,8 +181,8 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            color: var(--hero-text); /* Color más oscuro para mejor contraste */
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* Sombra para mejor legibilidad */
+            color: #4a3a3e;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
         
         .hero h1 span {
@@ -194,8 +193,8 @@
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: var(--hero-text); /* Color más oscuro para mejor contraste */
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Sombra para mejor legibilidad */
+            color: #4a3a3e;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
             font-weight: 500;
         }
         
@@ -211,13 +210,11 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.3);
         }
         
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 133, 162, 0.4);
         }
         
         /* ========== FEATURED SECTIONS ========== */
@@ -261,7 +258,7 @@
         
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--dark); /* Now using Dusty Rose */
+            background-color: var(--dark);
             padding: 60px 0 30px;
             text-align: center;
             color: white;
@@ -277,14 +274,16 @@
         .footer-column h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: var(--primary);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
         }
         
         .footer-column p, .footer-column a {
-            color: var(--light);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             margin-bottom: 10px;
             display: block;
             text-decoration: none;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
         .footer-column a:hover {
@@ -313,14 +312,14 @@
         .social-icons a:hover {
             background-color: var(--accent);
             color: white;
-            transform: translateY(-3px);
         }
         
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--primary);
+            color: #4a3a3e; /* Color más oscuro para mejor contraste */
             font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
         /* ========== RESPONSIVE DESIGN ========== */
@@ -339,7 +338,7 @@
             }
             
             .logo {
-                font-size: 30px; /* Adjusted for mobile */
+                font-size: 30px;
             }
         }
         
@@ -355,15 +354,11 @@
             }
             
             .logo {
-                font-size: 26px; /* Adjusted for mobile */
+                font-size: 26px;
             }
             
             .hero h1 {
                 font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
             }
         }
     </style>
@@ -405,7 +400,7 @@
         </div>
     </section>
 
-    <!-- ========== FEATURED SECTIONS ========== */
+    <!-- ========== FEATURED SECTIONS ========== -->
     <section class="featured">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 50px;">Why Choose The Lily's Experience?</h2>
@@ -429,7 +424,7 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== */
+    <!-- ========== FOOTER ========== -->
     <footer>
         <div class="container">
             <div class="footer-content">
