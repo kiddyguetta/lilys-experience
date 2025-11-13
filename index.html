@@ -15,6 +15,7 @@
             --light: #f9f0f5;
             --dark: #DFB2B5; /* Changed from #8a5d7e to Dusty Rose */
             --text: #5e4a4e;
+            --hero-text: #4a3a3e; /* Nuevo color más oscuro para el hero */
         }
         
         * {
@@ -181,17 +182,21 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            color: var(--dark);
+            color: var(--hero-text); /* Color más oscuro para mejor contraste */
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8); /* Sombra para mejor legibilidad */
         }
         
         .hero h1 span {
             color: var(--accent);
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: var(--dark);
+            color: var(--hero-text); /* Color más oscuro para mejor contraste */
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); /* Sombra para mejor legibilidad */
+            font-weight: 500;
         }
         
         .btn {
@@ -206,11 +211,13 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.3);
         }
         
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 133, 162, 0.4);
         }
         
         /* ========== FEATURED SECTIONS ========== */
@@ -306,6 +313,7 @@
         .social-icons a:hover {
             background-color: var(--accent);
             color: white;
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -353,6 +361,10 @@
             .hero h1 {
                 font-size: 2rem;
             }
+            
+            .hero p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -393,7 +405,7 @@
         </div>
     </section>
 
-    <!-- ========== FEATURED SECTIONS ========== -->
+    <!-- ========== FEATURED SECTIONS ========== */
     <section class="featured">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 50px;">Why Choose The Lily's Experience?</h2>
@@ -417,7 +429,7 @@
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- ========== FOOTER ========== */
     <footer>
         <div class="container">
             <div class="footer-content">
