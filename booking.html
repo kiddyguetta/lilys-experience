@@ -33,7 +33,7 @@
         
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 1.5rem;
         }
         
@@ -190,7 +190,7 @@
         }
         
         .booking-info h3 {
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
@@ -204,7 +204,7 @@
             margin-bottom: 15px;
             padding-left: 30px;
             position: relative;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
         }
         
         .booking-info li:before {
@@ -238,7 +238,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
         }
         
         .form-control {
@@ -302,7 +302,7 @@
         
         .package-name {
             font-weight: 600;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             font-size: 1.1rem;
         }
         
@@ -319,7 +319,7 @@
         
         .hours-selection label {
             font-size: 0.9rem;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 5px;
             display: block;
         }
@@ -340,7 +340,60 @@
         
         .hours-input span {
             font-size: 0.9rem;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
+        }
+        
+        /* Estilos para los menús de selección de acompañantes */
+        .side-selection {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--primary);
+            display: none;
+        }
+        
+        .side-category {
+            margin-bottom: 15px;
+        }
+        
+        .side-category h5 {
+            margin-bottom: 8px;
+            color: #4a3a3e;
+            font-size: 1rem;
+        }
+        
+        .selection-limit {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .side-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        
+        .side-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .side-option input[type="radio"] {
+            accent-color: var(--accent);
+        }
+        
+        .side-option input[type="checkbox"] {
+            accent-color: var(--accent);
+        }
+        
+        .side-option label {
+            font-size: 0.9rem;
+            color: #4a3a3e;
+            cursor: pointer;
         }
         
         .total-section {
@@ -367,7 +420,7 @@
         
         .total-note {
             font-size: 0.9rem;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             opacity: 0.8;
         }
         
@@ -422,7 +475,7 @@
         
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--dark);
+            background-color: #DFB2B5;
             padding: 60px 0 30px;
             text-align: center;
             color: white;
@@ -438,12 +491,12 @@
         .footer-column h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
         }
         
         .footer-column p, .footer-column a {
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 10px;
             display: block;
             text-decoration: none;
@@ -482,7 +535,7 @@
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             font-size: 0.9rem;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
@@ -716,6 +769,84 @@
                                 <div class="package-name">Basic Catering Package</div>
                                 <div class="package-price">$45 and UP</div>
                                 <small style="color: #4a3a3e;">Poultry & Pork, includes salad, sides & dessert</small>
+                                <!-- Menú de selección para Basic Package -->
+                                <div class="side-selection" id="side-selection-5">
+                                    <div class="side-category">
+                                        <h5>Salad + Dressing (Choose 1)</h5>
+                                        <div class="selection-limit">Select exactly 1 option</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="radio" id="basic-salad-1" name="basic-salad" value="Ceasar Salad">
+                                                <label for="basic-salad-1">Ceasar Salad</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="basic-salad-2" name="basic-salad" value="Antipasto Salad">
+                                                <label for="basic-salad-2">Antipasto Salad</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="basic-salad-3" name="basic-salad" value="Mediterranean Salad">
+                                                <label for="basic-salad-3">Mediterranean Salad</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Vegetables (Choose 2)</h5>
+                                        <div class="selection-limit">Select exactly 2 options</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="checkbox" id="basic-veg-1" name="basic-vegetables" value="Sauté broccoli" data-max="2">
+                                                <label for="basic-veg-1">Sauté broccoli</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="basic-veg-2" name="basic-vegetables" value="Char grilled zucchini squash and peppers" data-max="2">
+                                                <label for="basic-veg-2">Char grilled zucchini squash and peppers</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="basic-veg-3" name="basic-vegetables" value="Mixed veggies" data-max="2">
+                                                <label for="basic-veg-3">Mixed veggies</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Carbohydrates (Choose 2)</h5>
+                                        <div class="selection-limit">Select exactly 2 options</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="checkbox" id="basic-carb-1" name="basic-carbohydrates" value="Brown Rice" data-max="2">
+                                                <label for="basic-carb-1">Brown Rice</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="basic-carb-2" name="basic-carbohydrates" value="Roasted potatoes" data-max="2">
+                                                <label for="basic-carb-2">Roasted potatoes</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="basic-carb-3" name="basic-carbohydrates" value="Baked Sweet potatoes" data-max="2">
+                                                <label for="basic-carb-3">Baked Sweet potatoes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Dessert (Choose 1)</h5>
+                                        <div class="selection-limit">Select exactly 1 option</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="radio" id="basic-dessert-1" name="basic-dessert" value="Tres leches cake">
+                                                <label for="basic-dessert-1">Tres leches cake</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="basic-dessert-2" name="basic-dessert" value="Tiramisu">
+                                                <label for="basic-dessert-2">Tiramisu</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="basic-dessert-3" name="basic-dessert" value="Cheesecake">
+                                                <label for="basic-dessert-3">Cheesecake</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -725,6 +856,84 @@
                                 <div class="package-name">Deluxe Catering Package</div>
                                 <div class="package-price">$65 and UP</div>
                                 <small style="color: #4a3a3e;">Steak & Seafood, includes salad, sides & dessert</small>
+                                <!-- Menú de selección para Deluxe Package -->
+                                <div class="side-selection" id="side-selection-6">
+                                    <div class="side-category">
+                                        <h5>Salad + Dressing (Choose 1)</h5>
+                                        <div class="selection-limit">Select exactly 1 option</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="radio" id="deluxe-salad-1" name="deluxe-salad" value="Citrus salad">
+                                                <label for="deluxe-salad-1">Citrus salad</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="deluxe-salad-2" name="deluxe-salad" value="Shrimp salad">
+                                                <label for="deluxe-salad-2">Shrimp salad</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="deluxe-salad-3" name="deluxe-salad" value="Fruit salad">
+                                                <label for="deluxe-salad-3">Fruit salad</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Vegetables (Choose 2)</h5>
+                                        <div class="selection-limit">Select exactly 2 options</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="checkbox" id="deluxe-veg-1" name="deluxe-vegetables" value="Sauté broccoli" data-max="2">
+                                                <label for="deluxe-veg-1">Sauté broccoli</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="deluxe-veg-2" name="deluxe-vegetables" value="Char grilled zucchini squash and peppers" data-max="2">
+                                                <label for="deluxe-veg-2">Char grilled zucchini squash and peppers</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="deluxe-veg-3" name="deluxe-vegetables" value="Spanish style beans" data-max="2">
+                                                <label for="deluxe-veg-3">Spanish style beans</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Carbohydrates (Choose 2)</h5>
+                                        <div class="selection-limit">Select exactly 2 options</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="checkbox" id="deluxe-carb-1" name="deluxe-carbohydrates" value="Yellow Rice With Vegetables" data-max="2">
+                                                <label for="deluxe-carb-1">Yellow Rice With Vegetables</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="deluxe-carb-2" name="deluxe-carbohydrates" value="Potato salad" data-max="2">
+                                                <label for="deluxe-carb-2">Potato salad</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="checkbox" id="deluxe-carb-3" name="deluxe-carbohydrates" value="Garlic bread" data-max="2">
+                                                <label for="deluxe-carb-3">Garlic bread</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Dessert (Choose 1)</h5>
+                                        <div class="selection-limit">Select exactly 1 option</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="radio" id="deluxe-dessert-1" name="deluxe-dessert" value="Carrot Cake">
+                                                <label for="deluxe-dessert-1">Carrot Cake</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="deluxe-dessert-2" name="deluxe-dessert" value="Flan">
+                                                <label for="deluxe-dessert-2">Flan</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="deluxe-dessert-3" name="deluxe-dessert" value="Creme brûlée">
+                                                <label for="deluxe-dessert-3">Creme brûlée</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -734,6 +943,50 @@
                                 <div class="package-name">Kids Menu</div>
                                 <div class="package-price">$35</div>
                                 <small style="color: #4a3a3e;">Special menu options for children</small>
+                                <!-- Menú de selección para Kids Menu -->
+                                <div class="side-selection" id="side-selection-7">
+                                    <div class="side-category">
+                                        <h5>Main Dish (Choose 1)</h5>
+                                        <div class="selection-limit">Select exactly 1 option</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-main-1" name="kids-main" value="Baked chicken fingers">
+                                                <label for="kids-main-1">Baked chicken fingers</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-main-2" name="kids-main" value="Mac & cheese">
+                                                <label for="kids-main-2">Mac & cheese</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-main-3" name="kids-main" value="Mini sliders burgers">
+                                                <label for="kids-main-3">Mini sliders burgers</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-main-4" name="kids-main" value="Spaghetti and meatballs">
+                                                <label for="kids-main-4">Spaghetti and meatballs</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="side-category">
+                                        <h5>Side Dish (Choose 1)</h5>
+                                        <div class="selection-limit">Select exactly 1 option</div>
+                                        <div class="side-options">
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-side-1" name="kids-side" value="Home made pizza bread">
+                                                <label for="kids-side-1">Home made pizza bread</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-side-2" name="kids-side" value="Mini ravioli marinara">
+                                                <label for="kids-side-2">Mini ravioli marinara</label>
+                                            </div>
+                                            <div class="side-option">
+                                                <input type="radio" id="kids-side-3" name="kids-side" value="Chicken wings">
+                                                <label for="kids-side-3">Chicken wings</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -842,13 +1095,41 @@
                             hoursSelection.style.display = 'none';
                         }
                     }
+                    
+                    // Show/hide side selection for catering packages
+                    if (checkbox.id === 'package5' || checkbox.id === 'package6' || checkbox.id === 'package7') {
+                        const sideSelection = document.getElementById('side-selection-' + checkbox.id.slice(-1));
+                        if (checkbox.checked) {
+                            sideSelection.style.display = 'block';
+                        } else {
+                            sideSelection.style.display = 'none';
+                        }
+                    }
+                    
                     updateTotal();
                 });
             });
             
             // Add event listener for hours input
             const hoursInput = document.getElementById('hours-input-1');
-            hoursInput.addEventListener('change', updateTotal);
+            if (hoursInput) {
+                hoursInput.addEventListener('change', updateTotal);
+            }
+            
+            // Add validation for checkbox limits
+            const limitedCheckboxes = document.querySelectorAll('input[type="checkbox"][data-max]');
+            limitedCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const max = parseInt(this.getAttribute('data-max'));
+                    const groupName = this.getAttribute('name');
+                    const checkedBoxes = document.querySelectorAll(`input[name="${groupName}"]:checked`);
+                    
+                    if (checkedBoxes.length > max) {
+                        this.checked = false;
+                        alert(`You can only select ${max} options in this category.`);
+                    }
+                });
+            });
             
             function updateTotal() {
                 let total = 0;
@@ -927,6 +1208,39 @@
                 if (checkbox.id === 'package1') {
                     const hours = document.getElementById('hours-input-1').value || '5';
                     packageText += ` (${hours} hours)`;
+                }
+                
+                // Add side selections for catering packages
+                if (checkbox.id === 'package5' || checkbox.id === 'package6' || checkbox.id === 'package7') {
+                    const sideSelection = document.getElementById('side-selection-' + checkbox.id.slice(-1));
+                    const selectedSides = [];
+                    
+                    // Get selected options for each category
+                    const categories = sideSelection.querySelectorAll('.side-category');
+                    categories.forEach(category => {
+                        const categoryTitle = category.querySelector('h5').textContent;
+                        const selectedOptions = [];
+                        
+                        // Get radio buttons (single selection)
+                        const radioButtons = category.querySelectorAll('input[type="radio"]:checked');
+                        radioButtons.forEach(radio => {
+                            selectedOptions.push(radio.value);
+                        });
+                        
+                        // Get checkboxes (multiple selection)
+                        const checkboxes = category.querySelectorAll('input[type="checkbox"]:checked');
+                        checkboxes.forEach(cb => {
+                            selectedOptions.push(cb.value);
+                        });
+                        
+                        if (selectedOptions.length > 0) {
+                            selectedSides.push(`${categoryTitle}: ${selectedOptions.join(', ')}`);
+                        }
+                    });
+                    
+                    if (selectedSides.length > 0) {
+                        packageText += `\n  - ${selectedSides.join('\n  - ')}`;
+                    }
                 }
                 
                 selectedPackages.push(packageText);
@@ -1010,6 +1324,39 @@ ${specialRequests || 'Ninguna'}
                 if (checkbox.id === 'package1') {
                     const hours = document.getElementById('hours-input-1').value || '5';
                     packageText += ` (${hours} hours)`;
+                }
+                
+                // Add side selections for catering packages
+                if (checkbox.id === 'package5' || checkbox.id === 'package6' || checkbox.id === 'package7') {
+                    const sideSelection = document.getElementById('side-selection-' + checkbox.id.slice(-1));
+                    const selectedSides = [];
+                    
+                    // Get selected options for each category
+                    const categories = sideSelection.querySelectorAll('.side-category');
+                    categories.forEach(category => {
+                        const categoryTitle = category.querySelector('h5').textContent;
+                        const selectedOptions = [];
+                        
+                        // Get radio buttons (single selection)
+                        const radioButtons = category.querySelectorAll('input[type="radio"]:checked');
+                        radioButtons.forEach(radio => {
+                            selectedOptions.push(radio.value);
+                        });
+                        
+                        // Get checkboxes (multiple selection)
+                        const checkboxes = category.querySelectorAll('input[type="checkbox"]:checked');
+                        checkboxes.forEach(cb => {
+                            selectedOptions.push(cb.value);
+                        });
+                        
+                        if (selectedOptions.length > 0) {
+                            selectedSides.push(`${categoryTitle}: ${selectedOptions.join(', ')}`);
+                        }
+                    });
+                    
+                    if (selectedSides.length > 0) {
+                        packageText += `\n  - ${selectedSides.join('\n  - ')}`;
+                    }
                 }
                 
                 selectedPackages.push(packageText);
