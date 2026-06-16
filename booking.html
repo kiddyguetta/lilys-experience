@@ -761,30 +761,30 @@
                         
                         <!-- Package 2 - Essential Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package2" name="package" value="essential" data-price="500">
+                            <input type="checkbox" id="package2" name="package" value="essential" data-price="600">
                             <div class="package-details">
                                 <div class="package-name">Essential Experience</div>
-                                <div class="package-price">$500</div>
+                                <div class="package-price">$600</div>
                                 <div class="package-description">Up to 75 guests, 4 hours, 1 bartender</div>
                             </div>
                         </div>
                         
                         <!-- Package 3 - Premium Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package3" name="package" value="premium" data-price="850">
+                            <input type="checkbox" id="package3" name="package" value="premium" data-price="1000">
                             <div class="package-details">
                                 <div class="package-name">Premium Experience</div>
-                                <div class="package-price">$850</div>
+                                <div class="package-price">$1,000</div>
                                 <div class="package-description">Up to 125 guests, 4 hours, 2 bartenders</div>
                             </div>
                         </div>
                         
                         <!-- Package 4 - Luxury Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1500">
+                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1650">
                             <div class="package-details">
                                 <div class="package-name">Luxury Experience</div>
-                                <div class="package-price">$1,500</div>
+                                <div class="package-price">$1,650</div>
                                 <div class="package-description">Up to 200 guests, 4 hours, 2-3 bartenders</div>
                             </div>
                         </div>
@@ -832,7 +832,7 @@
             <div style="font-size: 2rem; font-weight: 700; color: var(--accent);" id="paypal-amount">$0</div>
             <p style="margin-top: 10px; font-size: 0.9rem;">Make sure your PayPal email is ready to receive the payment.</p>
             
-            <!-- PayPal Button - Sandbox (Test) -->
+            <!-- PayPal Button -->
             <div style="margin: 20px 0;">
                 <a href="https://www.paypal.com/paypalme/yourpaypalusername" target="_blank" class="btn-paypal" style="display: inline-block; text-decoration: none; padding: 15px 40px; border-radius: 10px; background-color: #0070BA; color: white; font-weight: 600;">
                     <i class="fab fa-paypal"></i> Send Payment via PayPal
@@ -954,7 +954,7 @@
             updateTotal();
         }
 
-        // ========== WHATSAPP - Mensaje de Texto Simple ==========
+        // ========== WHATSAPP ==========
         function sendWhatsApp() {
             const requiredFields = document.querySelectorAll('[required]');
             let valid = true;
@@ -1029,7 +1029,6 @@ Special Requests: ${specialRequests || 'None'}`;
             document.getElementById('paypalModal').classList.remove('active');
         }
         
-        // Cerrar modal al hacer clic fuera
         document.getElementById('paypalModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closePayPal();
