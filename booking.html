@@ -350,13 +350,19 @@
             color: #4a3a3e;
         }
         
-        /* ========== ADDONS SECTION ========== */
+        /* ========== ADDONS (se muestra solo si se selecciona Essential, Premium o Luxury) ========== */
         .addons-section {
             background: var(--light);
             padding: 25px;
             border-radius: 10px;
             margin-bottom: 20px;
             border: 1px solid var(--primary);
+            display: none;
+        }
+        
+        .addons-section.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
         }
         
         .addons-section h4 {
@@ -828,7 +834,7 @@
                         
                         <!-- Package 2 - Essential Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package2" name="package" value="essential" data-price="600">
+                            <input type="checkbox" id="package2" name="package" value="essential" data-price="600" data-ice-price="75" data-premium-price="50">
                             <div class="package-details">
                                 <div class="package-name">Essential Experience</div>
                                 <div class="package-price">$600</div>
@@ -838,7 +844,7 @@
                         
                         <!-- Package 3 - Premium Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package3" name="package" value="premium" data-price="1000">
+                            <input type="checkbox" id="package3" name="package" value="premium" data-price="1000" data-ice-price="135" data-premium-price="50">
                             <div class="package-details">
                                 <div class="package-name">Premium Experience</div>
                                 <div class="package-price">$1,000</div>
@@ -848,7 +854,7 @@
                         
                         <!-- Package 4 - Luxury Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1650">
+                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1650" data-ice-price="210" data-premium-price="50">
                             <div class="package-details">
                                 <div class="package-name">Luxury Experience</div>
                                 <div class="package-price">$1,650</div>
@@ -857,21 +863,21 @@
                         </div>
                     </div>
                     
-                    <!-- Add-ons Section -->
-                    <div class="addons-section">
+                    <!-- ========== ADDONS SECTION (se muestra solo si se selecciona Essential, Premium o Luxury) ========== -->
+                    <div class="addons-section" id="addons-section">
                         <h4><i class="fas fa-plus-circle"></i> Optional Add-ons</h4>
                         
                         <div class="addon-option">
-                            <input type="checkbox" id="addon-ice" class="addon-checkbox" data-price="75">
+                            <input type="checkbox" id="addon-ice" class="addon-checkbox" data-base-price="0">
                             <div class="addon-details">
                                 <div class="addon-name">ICE Package</div>
-                                <div class="addon-price">$75</div>
+                                <div class="addon-price" id="ice-price-display">$0</div>
                                 <div class="addon-description">Premium quality ice for cocktails</div>
                             </div>
                         </div>
                         
                         <div class="addon-option">
-                            <input type="checkbox" id="addon-premium" class="addon-checkbox" data-price="50">
+                            <input type="checkbox" id="addon-premium" class="addon-checkbox" data-base-price="50">
                             <div class="addon-details">
                                 <div class="addon-name">Premium Cocktail Upgrade</div>
                                 <div class="addon-price">$50</div>
@@ -997,41 +1003,89 @@
             dropdownContent.style.display = 'none';
         });
 
-        // ========== CALCULAR TOTAL ==========
+        // ========== MOSTRAR/OCULTAR ADDONS y ACTUALIZAR PRECIOS DE ICE ==========
         document.addEventListener('DOMContentLoaded', function() {
-            const checkboxes = document.querySelectorAll('input[name="package"]');
-            const addonCheckboxes = document.querySelectorAll('.addon-checkbox');
+            const packageCheckboxes = document.querySelectorAll('input[name="package"]');
+            const addonsSection = document.getElementById('addons-section');
+            const iceCheckbox = document.getElementById('addon-ice');
+            const icePriceDisplay = document.getElementById('ice-price-display');
+            const premiumCheckbox = document.getElementById('addon-premium');
             const totalAmount = document.querySelector('.total-amount');
             
-            // Package changes
-            checkboxes.forEach(checkbox => {
+            // Función para verificar si Essential, Premium o Luxury está seleccionado
+            function isAddonPackageSelected() {
+                const essential = document.getElementById('package2').checked;
+                const premium = document.getElementById('package3').checked;
+                const luxury = document.getElementById('package4').checked;
+                return essential || premium || luxury;
+            }
+            
+            // Función para obtener el precio del ICE según el paquete seleccionado
+            function getIcePrice() {
+                let price = 0;
+                const essential = document.getElementById('package2');
+                const premium = document.getElementById('package3');
+                const luxury = document.getElementById('package4');
+                
+                if (essential.checked) {
+                    price = parseInt(essential.getAttribute('data-ice-price')) || 0;
+                } else if (premium.checked) {
+                    price = parseInt(premium.getAttribute('data-ice-price')) || 0;
+                } else if (luxury.checked) {
+                    price = parseInt(luxury.getAttribute('data-ice-price')) || 0;
+                }
+                return price;
+            }
+            
+            // Función para actualizar la visibilidad de addons y precios
+            function updateAddonsVisibility() {
+                const show = isAddonPackageSelected();
+                addonsSection.classList.toggle('visible', show);
+                
+                // Actualizar precio del ICE si está visible
+                if (show) {
+                    const icePrice = getIcePrice();
+                    icePriceDisplay.textContent = '$' + icePrice;
+                    iceCheckbox.setAttribute('data-base-price', icePrice);
+                }
+                
+                // Desmarcar addons si se oculta la sección
+                if (!show) {
+                    iceCheckbox.checked = false;
+                    premiumCheckbox.checked = false;
+                }
+                
+                updateTotal();
+            }
+            
+            // Event listeners para los paquetes Essential, Premium y Luxury
+            packageCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
+                    // Si se desmarca Basic Bartending, ocultar horas
                     if (checkbox.id === 'package1') {
                         const hoursSelection = document.getElementById('hours-selection-1');
                         hoursSelection.style.display = checkbox.checked ? 'block' : 'none';
                     }
-                    updateTotal();
+                    updateAddonsVisibility();
                 });
             });
             
-            // Addon changes
-            addonCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    updateTotal();
-                });
-            });
+            // Event listeners para addons
+            iceCheckbox.addEventListener('change', updateTotal);
+            premiumCheckbox.addEventListener('change', updateTotal);
             
-            // Hours input
+            // Event listener para horas
             const hoursInput = document.getElementById('hours-input-1');
             if (hoursInput) {
                 hoursInput.addEventListener('change', updateTotal);
             }
             
+            // Función para actualizar el total
             function updateTotal() {
                 let total = 0;
                 
-                // Package totals
-                checkboxes.forEach(checkbox => {
+                // Paquetes
+                packageCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         let price = parseInt(checkbox.getAttribute('data-price'));
                         if (checkbox.id === 'package1' && checkbox.getAttribute('data-hourly') === 'true') {
@@ -1042,22 +1096,26 @@
                     }
                 });
                 
-                // Addon totals
-                addonCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        let price = parseInt(checkbox.getAttribute('data-price'));
-                        const guests = parseInt(document.getElementById('guests').value) || 0;
-                        // Scale add-ons based on guests
-                        if (guests > 0) {
-                            const multiplier = Math.ceil(guests / 25);
-                            price = price * multiplier;
-                        }
-                        total += price;
-                    }
-                });
+                // Addons
+                if (iceCheckbox.checked) {
+                    const icePrice = parseInt(iceCheckbox.getAttribute('data-base-price')) || 0;
+                    const guests = parseInt(document.getElementById('guests').value) || 0;
+                    const multiplier = guests > 0 ? Math.ceil(guests / 25) : 1;
+                    total += icePrice * multiplier;
+                }
+                
+                if (premiumCheckbox.checked) {
+                    const premiumPrice = parseInt(premiumCheckbox.getAttribute('data-base-price')) || 50;
+                    const guests = parseInt(document.getElementById('guests').value) || 0;
+                    const multiplier = guests > 0 ? Math.ceil(guests / 25) : 1;
+                    total += premiumPrice * multiplier;
+                }
                 
                 totalAmount.textContent = '$' + total.toLocaleString();
             }
+            
+            // Inicializar
+            updateAddonsVisibility();
         });
 
         function updatePackagePrice(packageId) {
@@ -1071,7 +1129,8 @@
                 const priceElement = checkbox.parentElement.querySelector('.package-price');
                 priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
             }
-            updateTotal();
+            // Actualizar total después de cambiar horas
+            document.dispatchEvent(new Event('DOMContentLoaded'));
         }
 
         // ========== WHATSAPP ==========
@@ -1115,14 +1174,24 @@
             });
             
             const selectedAddons = [];
-            document.querySelectorAll('.addon-checkbox:checked').forEach(checkbox => {
-                const name = checkbox.parentElement.querySelector('.addon-name').textContent;
-                const price = parseInt(checkbox.getAttribute('data-price'));
+            const iceCheckbox = document.getElementById('addon-ice');
+            const premiumCheckbox = document.getElementById('addon-premium');
+            
+            if (iceCheckbox.checked) {
+                const icePrice = parseInt(iceCheckbox.getAttribute('data-base-price')) || 0;
                 const guestsCount = parseInt(document.getElementById('guests').value) || 0;
                 let multiplier = guestsCount > 0 ? Math.ceil(guestsCount / 25) : 1;
-                const totalPrice = price * multiplier;
-                selectedAddons.push(`${name} - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
-            });
+                const totalPrice = icePrice * multiplier;
+                selectedAddons.push(`ICE Package - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
+            }
+            
+            if (premiumCheckbox.checked) {
+                const premiumPrice = parseInt(premiumCheckbox.getAttribute('data-base-price')) || 50;
+                const guestsCount = parseInt(document.getElementById('guests').value) || 0;
+                let multiplier = guestsCount > 0 ? Math.ceil(guestsCount / 25) : 1;
+                const totalPrice = premiumPrice * multiplier;
+                selectedAddons.push(`Premium Cocktail Upgrade - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
+            }
             
             const total = document.querySelector('.total-amount').textContent;
             
@@ -1222,14 +1291,24 @@ Thank you for choosing The Lily's Experience! 🥂`;
             });
             
             const selectedAddons = [];
-            document.querySelectorAll('.addon-checkbox:checked').forEach(checkbox => {
-                const name = checkbox.parentElement.querySelector('.addon-name').textContent;
-                const price = parseInt(checkbox.getAttribute('data-price'));
+            const iceCheckbox = document.getElementById('addon-ice');
+            const premiumCheckbox = document.getElementById('addon-premium');
+            
+            if (iceCheckbox.checked) {
+                const icePrice = parseInt(iceCheckbox.getAttribute('data-base-price')) || 0;
                 const guestsCount = parseInt(document.getElementById('guests').value) || 0;
                 let multiplier = guestsCount > 0 ? Math.ceil(guestsCount / 25) : 1;
-                const totalPrice = price * multiplier;
-                selectedAddons.push(`${name} - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
-            });
+                const totalPrice = icePrice * multiplier;
+                selectedAddons.push(`ICE Package - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
+            }
+            
+            if (premiumCheckbox.checked) {
+                const premiumPrice = parseInt(premiumCheckbox.getAttribute('data-base-price')) || 50;
+                const guestsCount = parseInt(document.getElementById('guests').value) || 0;
+                let multiplier = guestsCount > 0 ? Math.ceil(guestsCount / 25) : 1;
+                const totalPrice = premiumPrice * multiplier;
+                selectedAddons.push(`Premium Cocktail Upgrade - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
+            }
             
             const total = document.querySelector('.total-amount').textContent;
             
