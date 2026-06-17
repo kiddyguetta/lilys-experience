@@ -350,7 +350,7 @@
             color: #4a3a3e;
         }
         
-        /* ========== ADDONS (se muestra solo si se selecciona Essential, Premium o Luxury) ========== */
+        /* ========== ADDONS ========== */
         .addons-section {
             background: var(--light);
             padding: 25px;
@@ -450,9 +450,9 @@
             opacity: 0.8;
         }
         
-        .btn-whatsapp {
+        .btn-sms {
             width: 100%;
-            background-color: #25D366;
+            background-color: #34B7F1;
             color: white;
             padding: 18px;
             border: none;
@@ -464,10 +464,10 @@
             font-family: 'Montserrat', sans-serif;
         }
         
-        .btn-whatsapp:hover {
-            background-color: #128C7E;
+        .btn-sms:hover {
+            background-color: #1A8FC4;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 5px 15px rgba(52, 183, 241, 0.3);
         }
         
         .btn-paypal {
@@ -863,7 +863,7 @@
                         </div>
                     </div>
                     
-                    <!-- ========== ADDONS SECTION (se muestra solo si se selecciona Essential, Premium o Luxury) ========== -->
+                    <!-- ========== ADDONS SECTION ========== -->
                     <div class="addons-section" id="addons-section">
                         <h4><i class="fas fa-plus-circle"></i> Optional Add-ons</h4>
                         
@@ -902,8 +902,8 @@
                     </div>
                     
                     <div class="contact-options">
-                        <button class="btn-whatsapp" onclick="sendWhatsApp()">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        <button class="btn-sms" onclick="sendSMS()">
+                            <i class="fas fa-sms"></i> SMS
                         </button>
                         
                         <button class="btn-paypal" onclick="openPayPal()">
@@ -930,7 +930,8 @@
             <h3>PayPal Payment</h3>
             <p>You are about to send a payment request for:</p>
             <div style="font-size: 2rem; font-weight: 700; color: var(--accent);" id="paypal-amount">$0</div>
-            <p style="margin-top: 10px; font-size: 0.9rem;">Make sure your PayPal email is ready to receive the payment.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Send payment to:</p>
+            <p style="font-size: 1.2rem; font-weight: 600; color: #4a3a3e;">thelilysexperience1@hotmail.com</p>
             
             <div style="margin: 20px 0;">
                 <a href="https://www.paypal.com/paypalme/yourpaypalusername" target="_blank" class="btn-paypal" style="display: inline-block; text-decoration: none; padding: 15px 40px; border-radius: 10px; background-color: #0070BA; color: white; font-weight: 600;">
@@ -940,7 +941,9 @@
             
             <p style="font-size: 0.8rem; color: #4a3a3e;">
                 <strong>Note:</strong> Replace "yourpaypalusername" with your actual PayPal.me link.
-                <br>Example: paypal.me/YourBusinessName
+                <br>Example: paypal.me/TheLilysExperience
+                <br><br>
+                <strong>PayPal Email:</strong> thelilysexperience1@hotmail.com
             </p>
         </div>
     </div>
@@ -1012,7 +1015,6 @@
             const premiumCheckbox = document.getElementById('addon-premium');
             const totalAmount = document.querySelector('.total-amount');
             
-            // Función para verificar si Essential, Premium o Luxury está seleccionado
             function isAddonPackageSelected() {
                 const essential = document.getElementById('package2').checked;
                 const premium = document.getElementById('package3').checked;
@@ -1020,7 +1022,6 @@
                 return essential || premium || luxury;
             }
             
-            // Función para obtener el precio del ICE según el paquete seleccionado
             function getIcePrice() {
                 let price = 0;
                 const essential = document.getElementById('package2');
@@ -1037,19 +1038,16 @@
                 return price;
             }
             
-            // Función para actualizar la visibilidad de addons y precios
             function updateAddonsVisibility() {
                 const show = isAddonPackageSelected();
                 addonsSection.classList.toggle('visible', show);
                 
-                // Actualizar precio del ICE si está visible
                 if (show) {
                     const icePrice = getIcePrice();
                     icePriceDisplay.textContent = '$' + icePrice;
                     iceCheckbox.setAttribute('data-base-price', icePrice);
                 }
                 
-                // Desmarcar addons si se oculta la sección
                 if (!show) {
                     iceCheckbox.checked = false;
                     premiumCheckbox.checked = false;
@@ -1058,10 +1056,8 @@
                 updateTotal();
             }
             
-            // Event listeners para los paquetes Essential, Premium y Luxury
             packageCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
-                    // Si se desmarca Basic Bartending, ocultar horas
                     if (checkbox.id === 'package1') {
                         const hoursSelection = document.getElementById('hours-selection-1');
                         hoursSelection.style.display = checkbox.checked ? 'block' : 'none';
@@ -1070,21 +1066,17 @@
                 });
             });
             
-            // Event listeners para addons
             iceCheckbox.addEventListener('change', updateTotal);
             premiumCheckbox.addEventListener('change', updateTotal);
             
-            // Event listener para horas
             const hoursInput = document.getElementById('hours-input-1');
             if (hoursInput) {
                 hoursInput.addEventListener('change', updateTotal);
             }
             
-            // Función para actualizar el total
             function updateTotal() {
                 let total = 0;
                 
-                // Paquetes
                 packageCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         let price = parseInt(checkbox.getAttribute('data-price'));
@@ -1096,7 +1088,6 @@
                     }
                 });
                 
-                // Addons
                 if (iceCheckbox.checked) {
                     const icePrice = parseInt(iceCheckbox.getAttribute('data-base-price')) || 0;
                     const guests = parseInt(document.getElementById('guests').value) || 0;
@@ -1114,7 +1105,6 @@
                 totalAmount.textContent = '$' + total.toLocaleString();
             }
             
-            // Inicializar
             updateAddonsVisibility();
         });
 
@@ -1129,12 +1119,11 @@
                 const priceElement = checkbox.parentElement.querySelector('.package-price');
                 priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
             }
-            // Actualizar total después de cambiar horas
             document.dispatchEvent(new Event('DOMContentLoaded'));
         }
 
-        // ========== WHATSAPP ==========
-        function sendWhatsApp() {
+        // ========== SMS - MENSAJE DE TEXTO ==========
+        function sendSMS() {
             const requiredFields = document.querySelectorAll('[required]');
             let valid = true;
             
@@ -1228,9 +1217,10 @@ ${specialRequests || 'None'}
 We will contact you within 24 hours to confirm availability and provide a detailed quote.
 
 Thank you for choosing The Lily's Experience! 🥂`;
-
+            
+            // Enviar por SMS nativo
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/19482120707?text=${encodedMessage}`, '_blank');
+            window.open(`sms:+19482120707?body=${encodedMessage}`, '_blank');
         }
 
         // ========== PAYPAL ==========
