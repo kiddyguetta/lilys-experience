@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - The Lily's Experience</title>
+    <title>The Lily's Experience - Premium Bartending Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
         
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 1.5rem;
         }
         
@@ -163,65 +163,35 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* ========== PAGE CONTENT ========== */
-        .page-content {
-            padding: 140px 0 80px;
-        }
-        
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-        
-        .about-image {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            min-height: 500px;
+        /* ========== HERO SECTION ========== */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(249, 240, 245, 0.9)), url('https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-4.0.3') center/cover no-repeat;
+            height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
+            text-align: center;
+            padding-top: 80px;
         }
         
-        .about-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: all 0.3s ease;
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #4a3a3e;
         }
         
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .about-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
-        }
-        
-        .about-content h3 {
-            font-size: 1.5rem;
+        .hero h1 span {
             color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-style: italic;
         }
         
-        .about-content p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #4a3a3e;
         }
         
         .btn {
@@ -236,42 +206,55 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 20px;
         }
         
         .btn:hover {
             background-color: var(--secondary);
             transform: translateY(-3px);
         }
-
-        /* Placeholder style */
-        .photo-placeholder {
-            text-align: center;
-            color: white;
-            padding: 40px;
+        
+        /* ========== FEATURED SECTIONS ========== */
+        .featured {
+            padding: 80px 0;
+            background-color: white;
         }
-
-        .photo-placeholder i {
-            font-size: 4rem;
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .featured-card {
+            background: var(--light);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .featured-card i {
+            font-size: 3rem;
+            color: var(--accent);
             margin-bottom: 20px;
         }
-
-        .upload-instructions {
-            background: var(--light);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border-left: 4px solid var(--accent);
-        }
-
-        .upload-instructions h4 {
-            color: var(--accent);
-            margin-bottom: 10px;
+        
+        .featured-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
         
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--dark);
+            background-color: #DFB2B5;
             padding: 60px 0 30px;
             text-align: center;
             color: white;
@@ -287,12 +270,12 @@
         .footer-column h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
         }
         
         .footer-column p, .footer-column a {
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 10px;
             display: block;
             text-decoration: none;
@@ -325,42 +308,34 @@
         .social-icons a:hover {
             background-color: var(--accent);
             color: white;
+            transform: translateY(-3px);
         }
         
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             font-size: 0.9rem;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
-        /* ========== RESPONSIVE DESIGN ========== */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
-            .about-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .about-content h1 {
-                font-size: 2.5rem;
-            }
-            
             .dropdown-content {
                 right: -50px;
                 min-width: 200px;
             }
             
-            .logo {
-                font-size: 30px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
-            .page-content {
-                padding: 120px 0 60px;
+            .featured-grid {
+                grid-template-columns: 1fr;
             }
-
-            .about-image {
-                min-height: 300px;
+            
+            .logo {
+                font-size: 30px;
             }
         }
         
@@ -379,7 +354,7 @@
                 font-size: 26px;
             }
             
-            .about-content h1 {
+            .hero h1 {
                 font-size: 2rem;
             }
         }
@@ -394,7 +369,6 @@
                 The Lily's Experience
             </a>
             
-            <!-- Menú Desplegable -->
             <div class="dropdown">
                 <button class="dropbtn">
                     <i class="fas fa-bars"></i>
@@ -413,33 +387,38 @@
         </div>
     </header>
 
-    <!-- ========== PAGE CONTENT ========== -->
-    <div class="page-content">
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Elevate Your Event with <span>Expert Mixology</span></h1>
+            <p>Premium bartending services for weddings, corporate events, and private parties with Lily's unique touch</p>
+            <a href="packages.html" class="btn">View Packages</a>
+        </div>
+    </section>
+
+    <!-- ========== FEATURED SECTIONS ========== -->
+    <section class="featured">
         <div class="container">
-            <div class="about-container">
-                <div class="about-content">
-                    <h1>About The Lily's Experience</h1>
-                    <h3>Crafting Unforgettable Experiences</h3>
-                    <p>The Lily's Experience brings a new level of sophistication to event bartending. With over 5 years of experience in the hospitality industry, our team of skilled mixologists creates not just drinks, but memorable experiences for your guests.</p>
-                    <p>We specialize in custom cocktail menus, flair bartending performances, and providing exceptional service that will make your event truly stand out.</p>
-                    <a href="booking.html" class="btn">Get in Touch</a>
-                    
+            <h2 style="text-align: center; margin-bottom: 50px;">Why Choose The Lily's Experience?</h2>
+            <div class="featured-grid">
+                <div class="featured-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Professional Service</h3>
+                    <p>Certified bartenders with over 5 years of experience in premium event service</p>
                 </div>
-                <div class="about-image">
-                    <!-- TU FOTO PERSONAL - Reemplaza con Imagen8.png -->
-                    <img src="images/Imagen8.png" alt="Lily - Professional Bartender at The Lily's Experience" 
-                         onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
-                    
-                    <!-- Placeholder que se muestra si la imagen no carga -->
-                    <div id="photo-placeholder" class="photo-placeholder" style="display: none;">
-                        <i class="fas fa-camera"></i>
-                        <h3>Tu foto aparecerá aquí</h3>
-                        <p>Sube "Imagen8.png" a la carpeta images/ en GitHub</p>
-                    </div>
+                <div class="featured-card">
+                    <i class="fas fa-cocktail"></i>
+                    <h3>Custom Cocktails</h3>
+                    <p>Personalized menu creation tailored to your event's theme and preferences</p>
+                </div>
+                <div class="featured-card">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h3>Unforgettable Experience</h3>
+                    <p>We don't just serve drinks - we create memorable moments for your guests</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- ========== FOOTER ========== -->
     <footer>
@@ -470,7 +449,7 @@
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/19482120707" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
@@ -479,7 +458,6 @@
     </footer>
 
     <script>
-        // Cerrar menú desplegable al hacer clic fuera de él
         document.addEventListener('click', function(event) {
             const dropdown = document.querySelector('.dropdown');
             if (!dropdown.contains(event.target)) {
@@ -488,7 +466,6 @@
             }
         });
 
-        // Mantener el menú abierto cuando se pasa el mouse sobre él
         const dropdown = document.querySelector('.dropdown');
         const dropdownContent = document.querySelector('.dropdown-content');
         
@@ -498,21 +475,6 @@
         
         dropdown.addEventListener('mouseleave', function() {
             dropdownContent.style.display = 'none';
-        });
-
-        // Verificar si la imagen se carga correctamente
-        document.addEventListener('DOMContentLoaded', function() {
-            const img = document.querySelector('.about-image img');
-            const placeholder = document.getElementById('photo-placeholder');
-            
-            // Verificar después de que la página cargue completamente
-            setTimeout(function() {
-                if (img.naturalHeight === 0) {
-                    // La imagen no se cargó
-                    img.style.display = 'none';
-                    placeholder.style.display = 'flex';
-                }
-            }, 1000);
         });
     </script>
 </body>
