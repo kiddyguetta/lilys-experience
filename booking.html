@@ -350,6 +350,72 @@
             color: #4a3a3e;
         }
         
+        /* ========== ADDONS SECTION ========== */
+        .addons-section {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--primary);
+        }
+        
+        .addons-section h4 {
+            margin-bottom: 15px;
+            color: #4a3a3e;
+        }
+        
+        .addon-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid transparent;
+        }
+        
+        .addon-option:hover {
+            border-color: var(--primary);
+        }
+        
+        .addon-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+        }
+        
+        .addon-details {
+            flex-grow: 1;
+        }
+        
+        .addon-name {
+            font-weight: 500;
+            color: #4a3a3e;
+        }
+        
+        .addon-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .addon-description {
+            font-size: 0.8rem;
+            color: #4a3a3e;
+            opacity: 0.7;
+        }
+        
+        .addon-note {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #4a3a3e;
+        }
+        
         .total-section {
             background: var(--light);
             padding: 25px;
@@ -650,6 +716,7 @@
                     <h3>Booking Process</h3>
                     <ul>
                         <li>Select your preferred packages (you can choose multiple)</li>
+                        <li>Choose optional add-ons (ICE & Premium Cocktail upgrades)</li>
                         <li>Fill out the event details form</li>
                         <li>We'll contact you within 24 hours to confirm availability</li>
                         <li>50% deposit required to secure your date</li>
@@ -790,6 +857,33 @@
                         </div>
                     </div>
                     
+                    <!-- Add-ons Section -->
+                    <div class="addons-section">
+                        <h4><i class="fas fa-plus-circle"></i> Optional Add-ons</h4>
+                        
+                        <div class="addon-option">
+                            <input type="checkbox" id="addon-ice" class="addon-checkbox" data-price="75">
+                            <div class="addon-details">
+                                <div class="addon-name">ICE Package</div>
+                                <div class="addon-price">$75</div>
+                                <div class="addon-description">Premium quality ice for cocktails</div>
+                            </div>
+                        </div>
+                        
+                        <div class="addon-option">
+                            <input type="checkbox" id="addon-premium" class="addon-checkbox" data-price="50">
+                            <div class="addon-details">
+                                <div class="addon-name">Premium Cocktail Upgrade</div>
+                                <div class="addon-price">$50</div>
+                                <div class="addon-description">Upgrade to premium spirits and ingredients</div>
+                            </div>
+                        </div>
+                        
+                        <div class="addon-note">
+                            <i class="fas fa-info-circle"></i> <strong>Note:</strong> Quantities of ICE and Premium Cocktail upgrades are calculated based on the number of guests to ensure the best experience for your event.
+                        </div>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="specialRequests">Special Requests or Notes</label>
                         <textarea id="specialRequests" class="form-control" rows="4" placeholder="Any dietary restrictions, theme details, or special requirements..."></textarea>
@@ -798,7 +892,7 @@
                     <div class="total-section">
                         <h4 style="color: #4a3a3e;">Estimated Total</h4>
                         <div class="total-amount">$0</div>
-                        <p class="total-note">* Final pricing may vary based on specific requirements</p>
+                        <p class="total-note">* Final pricing may vary based on specific requirements. Add-ons quantities are proportional to your guest count.</p>
                     </div>
                     
                     <div class="contact-options">
@@ -832,7 +926,6 @@
             <div style="font-size: 2rem; font-weight: 700; color: var(--accent);" id="paypal-amount">$0</div>
             <p style="margin-top: 10px; font-size: 0.9rem;">Make sure your PayPal email is ready to receive the payment.</p>
             
-            <!-- PayPal Button -->
             <div style="margin: 20px 0;">
                 <a href="https://www.paypal.com/paypalme/yourpaypalusername" target="_blank" class="btn-paypal" style="display: inline-block; text-decoration: none; padding: 15px 40px; border-radius: 10px; background-color: #0070BA; color: white; font-weight: 600;">
                     <i class="fab fa-paypal"></i> Send Payment via PayPal
@@ -868,14 +961,14 @@
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-user"></i> Contact: Lily</p>
                     <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
-                    <p><i class="fas fa-phone"></i> Phone: +593 99 888 4004</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
                 </div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/593998884004" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/19482120707" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
@@ -907,8 +1000,10 @@
         // ========== CALCULAR TOTAL ==========
         document.addEventListener('DOMContentLoaded', function() {
             const checkboxes = document.querySelectorAll('input[name="package"]');
+            const addonCheckboxes = document.querySelectorAll('.addon-checkbox');
             const totalAmount = document.querySelector('.total-amount');
             
+            // Package changes
             checkboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
                     if (checkbox.id === 'package1') {
@@ -919,6 +1014,14 @@
                 });
             });
             
+            // Addon changes
+            addonCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateTotal();
+                });
+            });
+            
+            // Hours input
             const hoursInput = document.getElementById('hours-input-1');
             if (hoursInput) {
                 hoursInput.addEventListener('change', updateTotal);
@@ -926,6 +1029,8 @@
             
             function updateTotal() {
                 let total = 0;
+                
+                // Package totals
                 checkboxes.forEach(checkbox => {
                     if (checkbox.checked) {
                         let price = parseInt(checkbox.getAttribute('data-price'));
@@ -936,6 +1041,21 @@
                         total += price;
                     }
                 });
+                
+                // Addon totals
+                addonCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        let price = parseInt(checkbox.getAttribute('data-price'));
+                        const guests = parseInt(document.getElementById('guests').value) || 0;
+                        // Scale add-ons based on guests
+                        if (guests > 0) {
+                            const multiplier = Math.ceil(guests / 25);
+                            price = price * multiplier;
+                        }
+                        total += price;
+                    }
+                });
+                
                 totalAmount.textContent = '$' + total.toLocaleString();
             }
         });
@@ -994,28 +1114,54 @@
                 selectedPackages.push(packageText);
             });
             
+            const selectedAddons = [];
+            document.querySelectorAll('.addon-checkbox:checked').forEach(checkbox => {
+                const name = checkbox.parentElement.querySelector('.addon-name').textContent;
+                const price = parseInt(checkbox.getAttribute('data-price'));
+                const guestsCount = parseInt(document.getElementById('guests').value) || 0;
+                let multiplier = guestsCount > 0 ? Math.ceil(guestsCount / 25) : 1;
+                const totalPrice = price * multiplier;
+                selectedAddons.push(`${name} - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
+            });
+            
             const total = document.querySelector('.total-amount').textContent;
             
-            const message = `New Booking - The Lily's Experience
+            const message = `✨ NEW BOOKING REQUEST ✨
+━━━━━━━━━━━━━━━━━━━━━━
 
+👤 CLIENT INFORMATION:
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
+
+📅 EVENT DETAILS:
 Date: ${eventDate}
 Time: ${startTime} - ${endTime}
-Event: ${eventType}
+Event Type: ${eventType}
 Guests: ${guests}
 Venue: ${venue || 'Not specified'}
 
-Packages:
-${selectedPackages.map(pkg => `- ${pkg}`).join('\n')}
+🍸 SELECTED PACKAGES:
+${selectedPackages.map(pkg => `▸ ${pkg}`).join('\n')}
 
-Total: ${total}
+🧊 SELECTED ADD-ONS:
+${selectedAddons.length > 0 ? selectedAddons.map(addon => `▸ ${addon}`).join('\n') : '▸ None selected'}
 
-Special Requests: ${specialRequests || 'None'}`;
+💰 TOTAL ESTIMATE: ${total}
+
+📝 SPECIAL REQUESTS:
+${specialRequests || 'None'}
+
+━━━━━━━━━━━━━━━━━━━━━━
+📌 Add-on quantities are calculated based on the number of guests (1 unit per 25 guests) to ensure the best experience for your event.
+━━━━━━━━━━━━━━━━━━━━━━
+*Final pricing may vary based on specific requirements.
+We will contact you within 24 hours to confirm availability and provide a detailed quote.
+
+Thank you for choosing The Lily's Experience! 🥂`;
 
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/593998884004?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/19482120707?text=${encodedMessage}`, '_blank');
         }
 
         // ========== PAYPAL ==========
@@ -1075,26 +1221,52 @@ Special Requests: ${specialRequests || 'None'}`;
                 selectedPackages.push(packageText);
             });
             
+            const selectedAddons = [];
+            document.querySelectorAll('.addon-checkbox:checked').forEach(checkbox => {
+                const name = checkbox.parentElement.querySelector('.addon-name').textContent;
+                const price = parseInt(checkbox.getAttribute('data-price'));
+                const guestsCount = parseInt(document.getElementById('guests').value) || 0;
+                let multiplier = guestsCount > 0 ? Math.ceil(guestsCount / 25) : 1;
+                const totalPrice = price * multiplier;
+                selectedAddons.push(`${name} - $${totalPrice} (${multiplier} unit${multiplier > 1 ? 's' : ''})`);
+            });
+            
             const total = document.querySelector('.total-amount').textContent;
             
-            const subject = `New Booking - ${name} - ${eventDate}`;
-            const body = `New Booking - The Lily's Experience
+            const subject = `New Booking Request - ${name} - ${eventDate}`;
+            const body = `✨ NEW BOOKING REQUEST ✨
+━━━━━━━━━━━━━━━━━━━━━━
 
+👤 CLIENT INFORMATION:
 Name: ${name}
 Email: ${email}
 Phone: ${phone}
+
+📅 EVENT DETAILS:
 Date: ${eventDate}
 Time: ${startTime} - ${endTime}
-Event: ${eventType}
+Event Type: ${eventType}
 Guests: ${guests}
 Venue: ${venue || 'Not specified'}
 
-Packages:
-${selectedPackages.map(pkg => `- ${pkg}`).join('\n')}
+🍸 SELECTED PACKAGES:
+${selectedPackages.map(pkg => `▸ ${pkg}`).join('\n')}
 
-Total: ${total}
+🧊 SELECTED ADD-ONS:
+${selectedAddons.length > 0 ? selectedAddons.map(addon => `▸ ${addon}`).join('\n') : '▸ None selected'}
 
-Special Requests: ${specialRequests || 'None'}`;
+💰 TOTAL ESTIMATE: ${total}
+
+📝 SPECIAL REQUESTS:
+${specialRequests || 'None'}
+
+━━━━━━━━━━━━━━━━━━━━━━
+📌 Add-on quantities are calculated based on the number of guests (1 unit per 25 guests) to ensure the best experience for your event.
+━━━━━━━━━━━━━━━━━━━━━━
+*Final pricing may vary based on specific requirements.
+We will contact you within 24 hours to confirm availability and provide a detailed quote.
+
+Thank you for choosing The Lily's Experience! 🥂`;
 
             window.location.href = `mailto:thelilysexperience1@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
