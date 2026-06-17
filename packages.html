@@ -244,48 +244,6 @@
             font-size: 1.1rem;
         }
         
-        .addons {
-            background-color: var(--light);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            border-left: 4px solid var(--accent);
-        }
-        
-        .addons h4 {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: #4a3a3e;
-        }
-        
-        .addons p {
-            color: #4a3a3e;
-        }
-        
-        .custom-package {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            margin-top: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 2px dashed var(--primary);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .custom-package:hover {
-            border-style: solid;
-            transform: scale(1.02);
-        }
-        
-        .custom-package h3 {
-            color: #4a3a3e;
-        }
-        
-        .custom-package p {
-            color: #4a3a3e;
-        }
-        
         .btn {
             display: inline-block;
             background-color: var(--accent);
@@ -321,6 +279,40 @@
         .section-title p {
             font-size: 1.1rem;
             color: #4a3a3e;
+        }
+        
+        .custom-package {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px dashed var(--primary);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-package:hover {
+            border-style: solid;
+            transform: scale(1.02);
+        }
+        
+        .custom-package h3 {
+            color: #4a3a3e;
+        }
+        
+        .custom-package p {
+            color: #4a3a3e;
+        }
+        
+        .addons-note {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid var(--accent);
+            color: #4a3a3e;
+            font-size: 0.9rem;
         }
         
         /* ========== FOOTER ========== */
@@ -390,7 +382,7 @@
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
-        /* ========== RESPONSIVE DESIGN ========== */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .packages-grid {
                 grid-template-columns: 1fr;
@@ -489,7 +481,10 @@
                             <li>Customized alcohol shopping list</li>
                             <li>Gas compensation</li>
                         </ul>
-                        <a href="booking.html" class="btn" style="width: 100%;">Book Now</a>
+                        <div class="addons-note">
+                            <i class="fas fa-info-circle"></i> Add-ons available during booking (ICE & Premium Cocktail upgrades)
+                        </div>
+                        <a href="booking.html" class="btn" style="width: 100%; margin-top: 15px;">Book Now</a>
                     </div>
                 </div>
                 
@@ -514,14 +509,10 @@
                             <li>Cups, napkins and straws</li>
                             <li>Service area: up to 20 miles</li>
                         </ul>
-                        <div class="addons">
-                            <h4>Add-ons:</h4>
-                            <p>ICE: $75</p>
-                            <p>Premium cocktail upgrade: $50 per cocktail</p>
-                            <p>Gas compensation: $50</p>
-                            <p>Additional hours: $75/hr</p>
+                        <div class="addons-note">
+                            <i class="fas fa-info-circle"></i> Add-ons available during booking (ICE & Premium Cocktail upgrades)
                         </div>
-                        <a href="booking.html" class="btn" style="width: 100%;">Book Now</a>
+                        <a href="booking.html" class="btn" style="width: 100%; margin-top: 15px;">Book Now</a>
                     </div>
                 </div>
                 
@@ -546,14 +537,10 @@
                             <li>Cups, napkins and straws</li>
                             <li>Service area: up to 20 miles</li>
                         </ul>
-                        <div class="addons">
-                            <h4>Add-ons:</h4>
-                            <p>ICE: $135</p>
-                            <p>Premium cocktail upgrade: $50 per cocktail</p>
-                            <p>Gas compensation: $50</p>
-                            <p>Additional hours: $100/hr</p>
+                        <div class="addons-note">
+                            <i class="fas fa-info-circle"></i> Add-ons available during booking (ICE & Premium Cocktail upgrades)
                         </div>
-                        <a href="booking.html" class="btn" style="width: 100%;">Book Now</a>
+                        <a href="booking.html" class="btn" style="width: 100%; margin-top: 15px;">Book Now</a>
                     </div>
                 </div>
                 
@@ -578,14 +565,10 @@
                             <li>Cups, napkins and straws</li>
                             <li>Service area: up to 20 miles</li>
                         </ul>
-                        <div class="addons">
-                            <h4>Add-ons:</h4>
-                            <p>ICE: $210</p>
-                            <p>Premium cocktail upgrade: $50 per cocktail</p>
-                            <p>Gas compensation: $50</p>
-                            <p>Additional hours: $150/hr</p>
+                        <div class="addons-note">
+                            <i class="fas fa-info-circle"></i> Add-ons available during booking (ICE & Premium Cocktail upgrades)
                         </div>
-                        <a href="booking.html" class="btn" style="width: 100%;">Book Now</a>
+                        <a href="booking.html" class="btn" style="width: 100%; margin-top: 15px;">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -595,8 +578,8 @@
                 <h3><i class="fas fa-star"></i> OTHERS: Custom Cocktail Package</h3>
                 <p>Don't see what you're looking for? We can create a completely customized package tailored to your specific needs!</p>
                 <p>Whether you need a smaller intimate setup or a larger corporate event, we'll work with you to create the perfect experience.</p>
-                <div class="addons">
-                    <h4>Customization Options:</h4>
+                <div class="addons-note">
+                    <h4 style="margin-bottom: 5px; font-size: 1rem;">Customization Options:</h4>
                     <p>• Adjust number of bartenders and hours</p>
                     <p>• Custom menu creation</p>
                     <p>• Special theme packages</p>
@@ -632,14 +615,14 @@
                     <h3>Contact Us</h3>
                     <p><i class="fas fa-user"></i> Contact: Lily</p>
                     <p><i class="fas fa-envelope"></i> Email: thelilysexperience1@hotmail.com</p>
-                    <p><i class="fas fa-phone"></i> Phone: +593 99 888 4004</p>
+                    <p><i class="fas fa-phone"></i> Phone: +1 (948) 212-0707</p>
                 </div>
             </div>
             <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/593998884004" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/19482120707" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
@@ -648,7 +631,6 @@
     </footer>
 
     <script>
-        // Cerrar menú desplegable al hacer clic fuera de él
         document.addEventListener('click', function(event) {
             const dropdown = document.querySelector('.dropdown');
             if (!dropdown.contains(event.target)) {
@@ -657,7 +639,6 @@
             }
         });
 
-        // Mantener el menú abierto cuando se pasa el mouse sobre él
         const dropdown = document.querySelector('.dropdown');
         const dropdownContent = document.querySelector('.dropdown-content');
         
