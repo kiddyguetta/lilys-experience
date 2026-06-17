@@ -33,7 +33,7 @@
         
         h1, h2, h3, h4 {
             font-family: 'Playfair Display', serif;
-            color: var(--dark);
+            color: #4a3a3e;
             margin-bottom: 1.5rem;
         }
         
@@ -182,20 +182,16 @@
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             color: #4a3a3e;
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
         
         .hero h1 span {
             color: var(--accent);
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             color: #4a3a3e;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-            font-weight: 500;
         }
         
         .btn {
@@ -258,7 +254,7 @@
         
         /* ========== FOOTER ========== */
         footer {
-            background-color: var(--dark);
+            background-color: #DFB2B5;
             padding: 60px 0 30px;
             text-align: center;
             color: white;
@@ -274,12 +270,12 @@
         .footer-column h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
         }
         
         .footer-column p, .footer-column a {
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             margin-bottom: 10px;
             display: block;
             text-decoration: none;
@@ -312,17 +308,18 @@
         .social-icons a:hover {
             background-color: var(--accent);
             color: white;
+            transform: translateY(-3px);
         }
         
         .copyright {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #4a3a3e; /* Color más oscuro para mejor contraste */
+            color: #4a3a3e;
             font-size: 0.9rem;
             text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
         }
         
-        /* ========== RESPONSIVE DESIGN ========== */
+        /* ========== RESPONSIVE ========== */
         @media (max-width: 768px) {
             .dropdown-content {
                 right: -50px;
@@ -372,7 +369,6 @@
                 The Lily's Experience
             </a>
             
-            <!-- Menú Desplegable -->
             <div class="dropdown">
                 <button class="dropbtn">
                     <i class="fas fa-bars"></i>
@@ -453,7 +449,7 @@
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/19482120707" target="_blank"><i class="fab fa-whatsapp"></i></a>
             </div>
             <div class="copyright">
                 <p>&copy; 2023 The Lily's Experience. All rights reserved.</p>
@@ -462,7 +458,6 @@
     </footer>
 
     <script>
-        // Cerrar menú desplegable al hacer clic fuera de él
         document.addEventListener('click', function(event) {
             const dropdown = document.querySelector('.dropdown');
             if (!dropdown.contains(event.target)) {
@@ -471,7 +466,6 @@
             }
         });
 
-        // Mantener el menú abierto cuando se pasa el mouse sobre él
         const dropdown = document.querySelector('.dropdown');
         const dropdownContent = document.querySelector('.dropdown-content');
         
