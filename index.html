@@ -180,18 +180,23 @@
         
         .hero h1 {
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             color: #4a3a3e;
+            line-height: 1.2;
         }
         
-        .hero h1 span {
+        .hero h1 .subtitle {
+            display: block;
             color: var(--accent);
+            font-size: 3.8rem;
+            margin-top: 0.3rem;
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             color: #4a3a3e;
+            margin-top: 1.5rem;
         }
         
         .btn {
@@ -330,6 +335,10 @@
                 font-size: 2.5rem;
             }
             
+            .hero h1 .subtitle {
+                font-size: 2.8rem;
+            }
+            
             .featured-grid {
                 grid-template-columns: 1fr;
             }
@@ -356,6 +365,10 @@
             
             .hero h1 {
                 font-size: 2rem;
+            }
+            
+            .hero h1 .subtitle {
+                font-size: 2.2rem;
             }
         }
     </style>
@@ -390,7 +403,10 @@
     <!-- ========== HERO SECTION ========== -->
     <section class="hero">
         <div class="container hero-content">
-            <h1>Elevate Your Event with <span>The Lily's Experience</span></h1>
+            <h1>
+                Elevate Your Event with
+                <span class="subtitle">The Lily's Experience</span>
+            </h1>
             <p>Premium bartending services for weddings, corporate events, and private parties with Lily's unique touch</p>
             <a href="packages.html" class="btn">View Packages</a>
         </div>
