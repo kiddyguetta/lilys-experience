@@ -290,7 +290,7 @@
             transform: translateX(5px);
         }
         
-        .package-option input[type="checkbox"] {
+        .package-option input[type="radio"] {
             width: 20px;
             height: 20px;
             accent-color: var(--accent);
@@ -721,7 +721,7 @@
                 <div class="booking-info">
                     <h3>Booking Process</h3>
                     <ul>
-                        <li>Select your preferred packages (you can choose multiple)</li>
+                        <li>Select your preferred package (choose only one)</li>
                         <li>Choose optional add-ons (ICE & Premium Cocktail upgrades)</li>
                         <li>Fill out the event details form</li>
                         <li>We'll contact you within 24 hours to confirm availability</li>
@@ -813,11 +813,28 @@
                     </div>
                     
                     <div class="package-selection">
-                        <h4 style="margin-bottom: 15px; color: #4a3a3e;">Select Your Packages</h4>
+                        <h4 style="margin-bottom: 15px; color: #4a3a3e;">Select Your Package (Choose one)</h4>
                         
-                        <!-- Package 1 - Basic Bartending -->
+                        <!-- Package 1 - Server Service (PRIMERO) -->
                         <div class="package-option">
-                            <input type="checkbox" id="package1" name="package" value="basic-bartending" data-price="50" data-hourly="true">
+                            <input type="radio" id="package5" name="package" value="server" data-price="25" data-hourly="true">
+                            <div class="package-details">
+                                <div class="package-name">Server Service</div>
+                                <div class="package-price">$25/hr</div>
+                                <div class="package-description">Professional server for food and beverage service</div>
+                                <div class="hours-selection" id="hours-selection-5">
+                                    <label>Number of hours:</label>
+                                    <div class="hours-input">
+                                        <input type="number" id="hours-input-5" min="1" max="12" value="4" onchange="updatePackagePrice('package5')">
+                                        <span>hours</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Package 2 - Basic Bartending -->
+                        <div class="package-option">
+                            <input type="radio" id="package1" name="package" value="basic-bartending" data-price="50" data-hourly="true">
                             <div class="package-details">
                                 <div class="package-name">Basic Bartending Services</div>
                                 <div class="package-price">$50/hr</div>
@@ -832,9 +849,9 @@
                             </div>
                         </div>
                         
-                        <!-- Package 2 - Essential Experience -->
+                        <!-- Package 3 - Essential Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package2" name="package" value="essential" data-price="600" data-ice-price="75" data-premium-price="50">
+                            <input type="radio" id="package2" name="package" value="essential" data-price="600" data-ice-price="75" data-premium-price="50">
                             <div class="package-details">
                                 <div class="package-name">Essential Experience</div>
                                 <div class="package-price">$600</div>
@@ -842,9 +859,9 @@
                             </div>
                         </div>
                         
-                        <!-- Package 3 - Premium Experience -->
+                        <!-- Package 4 - Premium Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package3" name="package" value="premium" data-price="1000" data-ice-price="135" data-premium-price="50">
+                            <input type="radio" id="package3" name="package" value="premium" data-price="1000" data-ice-price="135" data-premium-price="50">
                             <div class="package-details">
                                 <div class="package-name">Premium Experience</div>
                                 <div class="package-price">$1,000</div>
@@ -852,30 +869,13 @@
                             </div>
                         </div>
                         
-                        <!-- Package 4 - Luxury Experience -->
+                        <!-- Package 5 - Luxury Experience -->
                         <div class="package-option">
-                            <input type="checkbox" id="package4" name="package" value="luxury" data-price="1650" data-ice-price="210" data-premium-price="50">
+                            <input type="radio" id="package4" name="package" value="luxury" data-price="1650" data-ice-price="210" data-premium-price="50">
                             <div class="package-details">
                                 <div class="package-name">Luxury Experience</div>
                                 <div class="package-price">$1,650</div>
                                 <div class="package-description">Up to 200 guests, 4 hours, 2-3 bartenders</div>
-                            </div>
-                        </div>
-
-                        <!-- Package 5 - Server Service (NUEVO) -->
-                        <div class="package-option">
-                            <input type="checkbox" id="package5" name="package" value="server" data-price="25" data-hourly="true">
-                            <div class="package-details">
-                                <div class="package-name">Server Service</div>
-                                <div class="package-price">$25/hr</div>
-                                <div class="package-description">Professional server for food and beverage service</div>
-                                <div class="hours-selection" id="hours-selection-5">
-                                    <label>Number of hours:</label>
-                                    <div class="hours-input">
-                                        <input type="number" id="hours-input-5" min="1" max="12" value="4" onchange="updatePackagePrice('package5')">
-                                        <span>hours</span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1025,7 +1025,7 @@
 
         // ========== MOSTRAR/OCULTAR ADDONS y ACTUALIZAR PRECIOS ==========
         document.addEventListener('DOMContentLoaded', function() {
-            const packageCheckboxes = document.querySelectorAll('input[name="package"]');
+            const packageRadios = document.querySelectorAll('input[name="package"]');
             const addonsSection = document.getElementById('addons-section');
             const iceCheckbox = document.getElementById('addon-ice');
             const icePriceDisplay = document.getElementById('ice-price-display');
@@ -1073,17 +1073,22 @@
                 updateTotal();
             }
             
-            packageCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
+            packageRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
                     // Mostrar/ocultar horas para Basic Bartending
-                    if (checkbox.id === 'package1') {
+                    if (radio.id === 'package1') {
                         const hoursSelection = document.getElementById('hours-selection-1');
-                        hoursSelection.style.display = checkbox.checked ? 'block' : 'none';
+                        hoursSelection.style.display = radio.checked ? 'block' : 'none';
                     }
                     // Mostrar/ocultar horas para Server Service
-                    if (checkbox.id === 'package5') {
+                    if (radio.id === 'package5') {
                         const hoursSelection = document.getElementById('hours-selection-5');
-                        hoursSelection.style.display = checkbox.checked ? 'block' : 'none';
+                        hoursSelection.style.display = radio.checked ? 'block' : 'none';
+                    }
+                    // Ocultar horas para otros paquetes
+                    if (radio.id !== 'package1' && radio.id !== 'package5') {
+                        document.getElementById('hours-selection-1').style.display = 'none';
+                        document.getElementById('hours-selection-5').style.display = 'none';
                     }
                     updateAddonsVisibility();
                 });
@@ -1105,13 +1110,13 @@
             function updateTotal() {
                 let total = 0;
                 
-                packageCheckboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        let price = parseInt(checkbox.getAttribute('data-price'));
-                        if (checkbox.id === 'package1' && checkbox.getAttribute('data-hourly') === 'true') {
+                packageRadios.forEach(radio => {
+                    if (radio.checked) {
+                        let price = parseInt(radio.getAttribute('data-price'));
+                        if (radio.id === 'package1' && radio.getAttribute('data-hourly') === 'true') {
                             const hours = parseInt(document.getElementById('hours-input-1').value) || 5;
                             price = price * hours;
-                        } else if (checkbox.id === 'package5' && checkbox.getAttribute('data-hourly') === 'true') {
+                        } else if (radio.id === 'package5' && radio.getAttribute('data-hourly') === 'true') {
                             const hours = parseInt(document.getElementById('hours-input-5').value) || 4;
                             price = price * hours;
                         }
@@ -1141,22 +1146,22 @@
 
         function updatePackagePrice(packageId) {
             if (packageId === 'package1') {
-                const checkbox = document.getElementById(packageId);
+                const radio = document.getElementById(packageId);
                 const hoursInput = document.getElementById('hours-input-1');
                 const hours = parseInt(hoursInput.value) || 5;
-                const hourlyRate = parseInt(checkbox.getAttribute('data-price'));
+                const hourlyRate = parseInt(radio.getAttribute('data-price'));
                 const totalPrice = hourlyRate * hours;
                 
-                const priceElement = checkbox.parentElement.querySelector('.package-price');
+                const priceElement = radio.parentElement.querySelector('.package-price');
                 priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
             } else if (packageId === 'package5') {
-                const checkbox = document.getElementById(packageId);
+                const radio = document.getElementById(packageId);
                 const hoursInput = document.getElementById('hours-input-5');
                 const hours = parseInt(hoursInput.value) || 4;
-                const hourlyRate = parseInt(checkbox.getAttribute('data-price'));
+                const hourlyRate = parseInt(radio.getAttribute('data-price'));
                 const totalPrice = hourlyRate * hours;
                 
-                const priceElement = checkbox.parentElement.querySelector('.package-price');
+                const priceElement = radio.parentElement.querySelector('.package-price');
                 priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
             }
             document.dispatchEvent(new Event('DOMContentLoaded'));
@@ -1193,12 +1198,12 @@
             const specialRequests = document.getElementById('specialRequests').value;
             
             const selectedPackages = [];
-            document.querySelectorAll('input[name="package"]:checked').forEach(checkbox => {
-                let packageText = checkbox.parentElement.querySelector('.package-name').textContent;
-                if (checkbox.id === 'package1') {
+            document.querySelectorAll('input[name="package"]:checked').forEach(radio => {
+                let packageText = radio.parentElement.querySelector('.package-name').textContent;
+                if (radio.id === 'package1') {
                     const hours = document.getElementById('hours-input-1').value || '5';
                     packageText += ` (${hours} hours)`;
-                } else if (checkbox.id === 'package5') {
+                } else if (radio.id === 'package5') {
                     const hours = document.getElementById('hours-input-5').value || '4';
                     packageText += ` (${hours} hours)`;
                 }
@@ -1242,7 +1247,7 @@ Event Type: ${eventType}
 Guests: ${guests}
 Venue: ${venue || 'Not specified'}
 
-🍸 SELECTED PACKAGES:
+🍸 SELECTED PACKAGE:
 ${selectedPackages.map(pkg => `▸ ${pkg}`).join('\n')}
 
 🧊 SELECTED ADD-ONS:
@@ -1313,12 +1318,12 @@ Thank you for choosing The Lily's Experience! 🥂`;
             const specialRequests = document.getElementById('specialRequests').value;
             
             const selectedPackages = [];
-            document.querySelectorAll('input[name="package"]:checked').forEach(checkbox => {
-                let packageText = checkbox.parentElement.querySelector('.package-name').textContent;
-                if (checkbox.id === 'package1') {
+            document.querySelectorAll('input[name="package"]:checked').forEach(radio => {
+                let packageText = radio.parentElement.querySelector('.package-name').textContent;
+                if (radio.id === 'package1') {
                     const hours = document.getElementById('hours-input-1').value || '5';
                     packageText += ` (${hours} hours)`;
-                } else if (checkbox.id === 'package5') {
+                } else if (radio.id === 'package5') {
                     const hours = document.getElementById('hours-input-5').value || '4';
                     packageText += ` (${hours} hours)`;
                 }
@@ -1363,7 +1368,7 @@ Event Type: ${eventType}
 Guests: ${guests}
 Venue: ${venue || 'Not specified'}
 
-🍸 SELECTED PACKAGES:
+🍸 SELECTED PACKAGE:
 ${selectedPackages.map(pkg => `▸ ${pkg}`).join('\n')}
 
 🧊 SELECTED ADD-ONS:
