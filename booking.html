@@ -838,7 +838,7 @@
                             <div class="package-details">
                                 <div class="package-name">Essential Experience</div>
                                 <div class="package-price">$600</div>
-                                <div class="package-description">Up to 75 guests, 4 hours, 1 bartender</div>
+                                <div class="package-description">Up to 65 guests, 4 hours, 1 bartender</div>
                             </div>
                         </div>
                         
@@ -859,6 +859,23 @@
                                 <div class="package-name">Luxury Experience</div>
                                 <div class="package-price">$1,650</div>
                                 <div class="package-description">Up to 200 guests, 4 hours, 2-3 bartenders</div>
+                            </div>
+                        </div>
+
+                        <!-- Package 5 - Server Service (NUEVO) -->
+                        <div class="package-option">
+                            <input type="checkbox" id="package5" name="package" value="server" data-price="25" data-hourly="true">
+                            <div class="package-details">
+                                <div class="package-name">Server Service</div>
+                                <div class="package-price">$25/hr</div>
+                                <div class="package-description">Professional server for food and beverage service</div>
+                                <div class="hours-selection" id="hours-selection-5">
+                                    <label>Number of hours:</label>
+                                    <div class="hours-input">
+                                        <input type="number" id="hours-input-5" min="1" max="12" value="4" onchange="updatePackagePrice('package5')">
+                                        <span>hours</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1006,7 +1023,7 @@
             dropdownContent.style.display = 'none';
         });
 
-        // ========== MOSTRAR/OCULTAR ADDONS y ACTUALIZAR PRECIOS DE ICE ==========
+        // ========== MOSTRAR/OCULTAR ADDONS y ACTUALIZAR PRECIOS ==========
         document.addEventListener('DOMContentLoaded', function() {
             const packageCheckboxes = document.querySelectorAll('input[name="package"]');
             const addonsSection = document.getElementById('addons-section');
@@ -1058,8 +1075,14 @@
             
             packageCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
+                    // Mostrar/ocultar horas para Basic Bartending
                     if (checkbox.id === 'package1') {
                         const hoursSelection = document.getElementById('hours-selection-1');
+                        hoursSelection.style.display = checkbox.checked ? 'block' : 'none';
+                    }
+                    // Mostrar/ocultar horas para Server Service
+                    if (checkbox.id === 'package5') {
+                        const hoursSelection = document.getElementById('hours-selection-5');
                         hoursSelection.style.display = checkbox.checked ? 'block' : 'none';
                     }
                     updateAddonsVisibility();
@@ -1069,9 +1092,14 @@
             iceCheckbox.addEventListener('change', updateTotal);
             premiumCheckbox.addEventListener('change', updateTotal);
             
-            const hoursInput = document.getElementById('hours-input-1');
-            if (hoursInput) {
-                hoursInput.addEventListener('change', updateTotal);
+            const hoursInput1 = document.getElementById('hours-input-1');
+            if (hoursInput1) {
+                hoursInput1.addEventListener('change', updateTotal);
+            }
+            
+            const hoursInput5 = document.getElementById('hours-input-5');
+            if (hoursInput5) {
+                hoursInput5.addEventListener('change', updateTotal);
             }
             
             function updateTotal() {
@@ -1082,6 +1110,9 @@
                         let price = parseInt(checkbox.getAttribute('data-price'));
                         if (checkbox.id === 'package1' && checkbox.getAttribute('data-hourly') === 'true') {
                             const hours = parseInt(document.getElementById('hours-input-1').value) || 5;
+                            price = price * hours;
+                        } else if (checkbox.id === 'package5' && checkbox.getAttribute('data-hourly') === 'true') {
+                            const hours = parseInt(document.getElementById('hours-input-5').value) || 4;
                             price = price * hours;
                         }
                         total += price;
@@ -1118,11 +1149,20 @@
                 
                 const priceElement = checkbox.parentElement.querySelector('.package-price');
                 priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
+            } else if (packageId === 'package5') {
+                const checkbox = document.getElementById(packageId);
+                const hoursInput = document.getElementById('hours-input-5');
+                const hours = parseInt(hoursInput.value) || 4;
+                const hourlyRate = parseInt(checkbox.getAttribute('data-price'));
+                const totalPrice = hourlyRate * hours;
+                
+                const priceElement = checkbox.parentElement.querySelector('.package-price');
+                priceElement.textContent = '$' + totalPrice + ' (' + hours + ' hours)';
             }
             document.dispatchEvent(new Event('DOMContentLoaded'));
         }
 
-        // ========== SMS - MENSAJE DE TEXTO ==========
+        // ========== SMS ==========
         function sendSMS() {
             const requiredFields = document.querySelectorAll('[required]');
             let valid = true;
@@ -1157,6 +1197,9 @@
                 let packageText = checkbox.parentElement.querySelector('.package-name').textContent;
                 if (checkbox.id === 'package1') {
                     const hours = document.getElementById('hours-input-1').value || '5';
+                    packageText += ` (${hours} hours)`;
+                } else if (checkbox.id === 'package5') {
+                    const hours = document.getElementById('hours-input-5').value || '4';
                     packageText += ` (${hours} hours)`;
                 }
                 selectedPackages.push(packageText);
@@ -1218,7 +1261,6 @@ We will contact you within 24 hours to confirm availability and provide a detail
 
 Thank you for choosing The Lily's Experience! 🥂`;
             
-            // Enviar por SMS nativo
             const encodedMessage = encodeURIComponent(message);
             window.open(`sms:+19482120707?body=${encodedMessage}`, '_blank');
         }
@@ -1275,6 +1317,9 @@ Thank you for choosing The Lily's Experience! 🥂`;
                 let packageText = checkbox.parentElement.querySelector('.package-name').textContent;
                 if (checkbox.id === 'package1') {
                     const hours = document.getElementById('hours-input-1').value || '5';
+                    packageText += ` (${hours} hours)`;
+                } else if (checkbox.id === 'package5') {
+                    const hours = document.getElementById('hours-input-5').value || '4';
                     packageText += ` (${hours} hours)`;
                 }
                 selectedPackages.push(packageText);
